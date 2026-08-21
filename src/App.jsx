@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FinalCTA from '@/components/FinalCTA';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const AmazonFBAWholesalePage = lazy(() => import('@/pages/AmazonFBAWholesalePage'));
@@ -13,6 +14,7 @@ const AmazonPPCPage = lazy(() => import('@/pages/AmazonPPCPage'));
 const ECommerceStartupPage = lazy(() => import('@/pages/ECommerceStartupPage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const CompaniesPage = lazy(() => import('@/pages/CompaniesPage'));
+const ExploreOurCompaniesPage = lazy(() => import('@/pages/ExploreOurCompaniesPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
 const BlogPage = lazy(() => import('@/pages/BlogPage'));
 const BlogDetail = lazy(() => import('@/pages/BlogDetail'));
@@ -48,6 +50,7 @@ function AnimatedRoutes() {
           <Route path="/courses/ecommerce-startup" element={<ECommerceStartupPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/companies" element={<CompaniesPage />} />
+          <Route path="/explore-our-companies" element={<ExploreOurCompaniesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
@@ -67,6 +70,7 @@ function App() {
       <MotionConfig reducedMotion="user">
         <div className="relative min-h-screen flex flex-col bg-slate-50 groish-page-shell">
         <div className="groish-ambient" aria-hidden="true" />
+        <ScrollToTop />
         <ScrollProgress />
         <Header />
         <main className="flex-grow">

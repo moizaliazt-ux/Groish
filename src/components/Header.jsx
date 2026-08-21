@@ -141,7 +141,7 @@ const Header = () => {
 
         <div className="hidden items-center gap-3 md:flex">
           <Link
-            to="/companies#inside-groish"
+            to="/explore-our-companies"
             className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
               isScrolled
                 ? 'bg-slate-950 text-white shadow-[0_18px_35px_rgba(15,23,42,0.18)] hover:bg-slate-800'
@@ -194,7 +194,7 @@ const Header = () => {
               </div>
 
               <Link
-                to="/companies#inside-groish"
+                to="/explore-our-companies"
                 onClick={closeMobileMenu}
                 className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white"
               >
