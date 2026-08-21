@@ -5,7 +5,7 @@ import { Facebook, Instagram, Linkedin, Mail, MessageCircle, Phone } from 'lucid
 const quickLinks = [
   { label: 'Home', to: '/' },
   { label: 'About GROISH', to: '/about' },
-  { label: 'Our Companies', to: '/#inside-groish' },
+  { label: 'Our Companies', to: '/companies#inside-groish' },
   { label: 'Contact', to: '/contact' },
 ];
 
@@ -49,7 +49,7 @@ const Footer = () => (
       </div>
       <div>
         <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-white">Contact</h3>
-        <ul className="mt-5 space-y-4 text-sm text-slate-400"><li className="flex items-center gap-3"><Mail className="h-4 w-4 shrink-0 text-cyan-300" /><a href="mailto:info@groish.com" className="hover:text-white">info@groish.com</a></li><li className="flex items-center gap-3"><Phone className="h-4 w-4 shrink-0 text-cyan-300" /><span>+92 370 6803898</span></li><li><a href="https://wa.me/923286672129" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-emerald-300 hover:text-emerald-200"><MessageCircle className="h-4 w-4" />WhatsApp</a></li></ul>
+        <ul className="mt-5 space-y-4 text-sm text-slate-400"><li className="flex items-center gap-3"><Mail className="h-4 w-4 shrink-0 text-cyan-300" /><a href="mailto:info@groish.com" className="hover:text-white">info@groish.com</a></li><li className="flex items-center gap-3"><Phone className="h-4 w-4 shrink-0 text-cyan-300" /><span>03286672129</span></li><li><a href="https://wa.me/923286672129" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-emerald-300 hover:text-emerald-200"><MessageCircle className="h-4 w-4" />WhatsApp</a></li></ul>
       </div>
     </div>
     <div className="border-t border-white/10"><div className="container mx-auto px-4 py-6 text-xs text-slate-500">© {new Date().getFullYear()} GROISH. All rights reserved.</div></div>

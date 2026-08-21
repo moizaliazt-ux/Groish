@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import HeroSlider from '@/components/HeroSlider';
 import EnrollmentForm from '@/components/EnrollmentForm';
-import OurCompanies from '@/components/OurCompanies';
 import GroishEcommerce from '@/components/GroishEcommerce';
 import WhatWeDo from '@/components/WhatWeDo';
 import InsideGroish from '@/components/InsideGroish';
@@ -64,11 +63,11 @@ const HomePage = () => {
   return (
     <div className="groish-page-shell pt-20">
       <Helmet>
-        <title>Inside GROISH | Technology, Healthcare, E-commerce & Business Operations</title>
-        <meta name="description" content="Explore GROISH, a parent company building and supporting specialized businesses across technology, healthcare services, e-commerce, digital growth, and business operations." />
+        <title>GROISH | Building Businesses. Creating Possibilities.</title>
+        <meta name="description" content="GROISH brings together technology, healthcare support, e-commerce, digital growth, and education to help ideas move forward." />
         <link rel="canonical" href="https://groish.com/" />
-        <meta property="og:title" content="Inside GROISH | One Group. Multiple Businesses. One Direction." />
-        <meta property="og:description" content="Discover the GROISH business ecosystem across WebCore360, TransMedEx, e-commerce, technology, healthcare services, and digital operations." />
+        <meta property="og:title" content="GROISH | Building Businesses. Creating Possibilities." />
+        <meta property="og:description" content="Discover GROISH and the capabilities helping ambitious ideas move forward." />
         <meta property="og:url" content="https://groish.com/" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify({
@@ -76,7 +75,7 @@ const HomePage = () => {
           '@type': 'Corporation',
           name: 'GROISH',
           url: 'https://groish.com/',
-          description: 'GROISH is a parent company building and supporting specialized businesses across technology, healthcare services, e-commerce, digital growth, and business operations.',
+          description: 'GROISH brings together technology, healthcare support, e-commerce, digital growth, and education to help ideas move forward.',
           subOrganization: [
             { '@type': 'Organization', name: 'WebCore360' },
             { '@type': 'Organization', name: 'TransMedEx' },
@@ -280,10 +279,6 @@ const HomePage = () => {
           </div>
         </div>
       </motion.section>
-
-      <div className="groish-section-frame">
-        <OurCompanies />
-      </div>
 
       <section className="relative overflow-hidden bg-slate-900 py-16 text-white sm:py-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.18),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.22),transparent_30%)]" />

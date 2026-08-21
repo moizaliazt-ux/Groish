@@ -12,6 +12,7 @@ const AmazonPrivateLabelPage = lazy(() => import('@/pages/AmazonPrivateLabelPage
 const AmazonPPCPage = lazy(() => import('@/pages/AmazonPPCPage'));
 const ECommerceStartupPage = lazy(() => import('@/pages/ECommerceStartupPage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
+const CompaniesPage = lazy(() => import('@/pages/CompaniesPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
 const BlogPage = lazy(() => import('@/pages/BlogPage'));
 const BlogDetail = lazy(() => import('@/pages/BlogDetail'));
@@ -46,6 +47,7 @@ function AnimatedRoutes() {
           <Route path="/courses/amazon-ppc" element={<AmazonPPCPage />} />
           <Route path="/courses/ecommerce-startup" element={<ECommerceStartupPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/companies" element={<CompaniesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />

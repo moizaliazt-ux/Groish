@@ -34,7 +34,7 @@ const AmazonFBAWholesalePage = () => {
               <a href="#enroll">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 font-bold">Enroll Now</Button>
               </a>
-              <a href="https://wa.me/923706803898" target="_blank" rel="noreferrer">
+              <a href="https://wa.me/923286672129" target="_blank" rel="noreferrer">
                 <Button size="lg" className="bg-green-500 hover:bg-green-600 font-bold gap-2"><MessageCircle className="w-5 h-5" /> WhatsApp Us</Button>
               </a>
             </div>
@@ -81,8 +81,8 @@ const AmazonFBAWholesalePage = () => {
             <h3 className="text-2xl font-bold text-slate-900 mb-4">Have Questions? Let's Talk!</h3>
             <p className="text-slate-600 mb-6">Our experts are available to guide you through the enrollment process and answer any queries you might have.</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="https://wa.me/923706803898" target="_blank" rel="noreferrer">
-                <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white w-full sm:w-auto font-bold"><MessageCircle className="w-5 h-5 mr-2" /> +92 370 6803898</Button>
+              <a href="https://wa.me/923286672129" target="_blank" rel="noreferrer">
+                <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white w-full sm:w-auto font-bold"><MessageCircle className="w-5 h-5 mr-2" /> 03286672129</Button>
               </a>
               <div className="flex items-center gap-2 text-slate-600 font-medium px-4">
                 <MapPin className="text-blue-600" /> DHA Phase 4, Lahore

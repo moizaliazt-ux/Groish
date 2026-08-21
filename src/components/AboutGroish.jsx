@@ -97,7 +97,7 @@ const AboutGroish = () => {
 							<div className="flex items-center gap-3"><Layers3 className="h-5 w-5 text-blue-600" /><span className="text-sm font-semibold text-slate-700">Specialized companies, shared direction</span></div>
 							<div className="flex items-center gap-3"><Globe2 className="h-5 w-5 text-cyan-600" /><span className="text-sm font-semibold text-slate-700">A connected global outlook</span></div>
 						</div>
-						<a href="#inside-groish" className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-blue-700 transition-colors hover:text-blue-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-4">See inside GROISH <ArrowUpRight className="h-4 w-4" /></a>
+						<a href="/companies#inside-groish" className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-blue-700 transition-colors hover:text-blue-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-4">See inside GROISH <ArrowUpRight className="h-4 w-4" /></a>
 					</motion.div>
 				</div>
 			</div>

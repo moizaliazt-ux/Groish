@@ -41,7 +41,7 @@ export const BlogSidebar = () => (
       <Link to="/courses/amazon-fba-wholesale">
         <Button variant="secondary" className="w-full mb-3 bg-white text-blue-600 hover:bg-slate-100">Enroll Now</Button>
       </Link>
-      <a href="https://wa.me/923706803898" target="_blank" rel="noreferrer">
+      <a href="https://wa.me/923286672129" target="_blank" rel="noreferrer">
         <Button className="w-full bg-green-500 hover:bg-green-600 text-white">WhatsApp Us</Button>
       </a>
     </div>
@@ -67,8 +67,8 @@ export const BlogCTABanner = ({ title, subtitle, link }) => (
       <Link to={link || "/courses/amazon-fba-wholesale"}>
         <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-bold">Enroll Now</Button>
       </Link>
-      <a href="https://wa.me/923706803898" target="_blank" rel="noreferrer">
-        <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold">WhatsApp (+92 370 6803898)</Button>
+      <a href="https://wa.me/923286672129" target="_blank" rel="noreferrer">
+        <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold">WhatsApp (03286672129)</Button>
       </a>
     </div>
   </div>

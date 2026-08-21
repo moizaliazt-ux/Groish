@@ -55,10 +55,14 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5.5rem;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-background text-foreground;
+    max-width: 100%;
+    overflow-x: clip;
     overscroll-behavior-y: smooth;
     font-family: Inter, 'Segoe UI', 'Avenir Next', sans-serif;
     background:
@@ -924,13 +928,19 @@
   .groish-page-shell {
     position: relative;
     isolation: isolate;
+    max-width: 100%;
+    overflow-x: clip;
     background: linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(239, 246, 255, 0.9));
   }
 
   .groish-ambient {
     position: fixed;
-    inset: -12% -8% auto -8%;
+    top: -12%;
+    right: 0;
+    left: 0;
     height: 80vh;
+    width: 100%;
+    max-width: 100vw;
     z-index: 0;
     pointer-events: none;
     opacity: 0.48;
@@ -965,8 +975,9 @@
     position: fixed;
     z-index: -1;
     top: 18%;
-    left: -18%;
-    width: 136%;
+    left: 0;
+    width: 100%;
+    max-width: 100vw;
     height: 1px;
     content: '';
     pointer-events: none;

@@ -5,9 +5,8 @@ import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
 import { servicesData } from '@/data/servicesData';
 
 const navItems = [
-  { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'Companies', to: '/#inside-groish' },
+  { label: 'Companies', to: '/companies#inside-groish' },
   { label: 'Services', to: '/services' },
   { label: 'Contact', to: '/contact' },
 ];
@@ -142,7 +141,7 @@ const Header = () => {
 
         <div className="hidden items-center gap-3 md:flex">
           <Link
-            to="/#inside-groish"
+            to="/companies#inside-groish"
             className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
               isScrolled
                 ? 'bg-slate-950 text-white shadow-[0_18px_35px_rgba(15,23,42,0.18)] hover:bg-slate-800'
@@ -178,8 +177,8 @@ const Header = () => {
           >
             <div className="container mx-auto space-y-2 px-4 py-4">
               {navItems.filter((item) => item.label !== 'Services').map((item) => (
-                <NavLink key={item.to} to={item.to} end={item.to === '/'} onClick={closeMobileMenu} className={({ isActive }) => `flex items-center justify-between rounded-xl px-3 py-3 text-base font-medium transition-colors ${isActive ? 'bg-slate-100 text-slate-950' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'}`}>
-                  <span>{item.label}</span>{item.to !== '/' && <span className="h-2 w-2 rounded-full bg-slate-900/70" />}
+                <NavLink key={item.to} to={item.to} onClick={closeMobileMenu} className={({ isActive }) => `flex items-center justify-between rounded-xl px-3 py-3 text-base font-medium transition-colors ${isActive ? 'bg-slate-100 text-slate-950' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'}`}>
+                  <span>{item.label}</span><span className="h-2 w-2 rounded-full bg-slate-900/70" />
                 </NavLink>
               ))}
               <div className="rounded-xl bg-slate-50">
@@ -195,7 +194,7 @@ const Header = () => {
               </div>
 
               <Link
-                to="/#inside-groish"
+                to="/companies#inside-groish"
                 onClick={closeMobileMenu}
                 className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white"
               >
