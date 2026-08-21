@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Building2, Globe2, Layers3 } from 'lucide-react';
-import officeTeam from '@/hooks/company-images/IMG_6247.jpg';
-import officeWorkspace from '@/hooks/company-images/IMG_6258.jpg';
+const officeTeam = '/optimized-images/IMG_6247.jpg';
+const officeWorkspace = '/optimized-images/IMG_6258.jpg';
 
 const focusAreas = ['Entrepreneurship', 'Technology', 'Business growth', 'Healthcare solutions', 'E-commerce', 'Education'];
 
@@ -35,6 +35,9 @@ const AboutGroish = () => {
 							<motion.img
 								src={officeTeam}
 								alt="GROISH team working in the Lahore office"
+								loading="lazy"
+								decoding="async"
+								sizes="(max-width: 1024px) 78vw, 42vw"
 								className="groish-photo-media"
 								whileHover={{ scale: 1.08, x: 6, y: -6 }}
 								transition={{ duration: 0.9, ease: 'easeOut' }}
@@ -52,6 +55,9 @@ const AboutGroish = () => {
 							<motion.img
 								src={officeWorkspace}
 								alt="GROISH workspace in Lahore"
+								loading="lazy"
+								decoding="async"
+								sizes="(max-width: 1024px) 56vw, 30vw"
 								className="groish-photo-media"
 								whileHover={{ scale: 1.1, x: -8, y: -6 }}
 								transition={{ duration: 0.9, ease: 'easeOut' }}

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import officeImage from '@/hooks/company-images/WhatsApp Image 2026-08-06 at 00.55.00.jpeg';
+const officeImage = '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg';
 
 const FinalCTA = () => {
 	const ctaRef = useRef(null);

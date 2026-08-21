@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, MapPin, X } from 'lucide-react';
-import lahore01 from '@/hooks/company-images/IMG_6236.jpg';
-import lahore02 from '@/hooks/company-images/IMG_6238.jpg';
-import lahore03 from '@/hooks/company-images/IMG_6240.jpg';
-import lahore04 from '@/hooks/company-images/IMG_6247.jpg';
-import lahore05 from '@/hooks/company-images/IMG_6248.jpg';
-import lahore06 from '@/hooks/company-images/IMG_6258.jpg';
-import lahore07 from '@/hooks/company-images/IMG_6259.jpg';
-import lahore08 from '@/hooks/company-images/IMG_6262.jpg';
-import usa01 from '@/hooks/company-images/WhatsApp Image 2026-08-06 at 00.55.00.jpeg';
-import usa02 from '@/hooks/company-images/image.png';
+const lahore01 = '/optimized-images/IMG_6236.jpg';
+const lahore02 = '/optimized-images/IMG_6238.jpg';
+const lahore03 = '/optimized-images/IMG_6240.jpg';
+const lahore04 = '/optimized-images/IMG_6247.jpg';
+const lahore05 = '/optimized-images/IMG_6248.jpg';
+const lahore06 = '/optimized-images/IMG_6258.jpg';
+const lahore07 = '/optimized-images/IMG_6259.jpg';
+const lahore08 = '/optimized-images/IMG_6262.jpg';
+const usa01 = '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg';
+const usa02 = '/company-images/image.png';
 
 const galleryImages = [
 	{ src: lahore01, alt: 'GROISH Lahore team working in the office', location: 'LAHORE, PAKISTAN', label: 'A collaborative workspace where strategy and execution meet.', featured: true },
@@ -58,7 +58,7 @@ const InsideGroish = () => {
 	}, []);
 
 	return (
-		<section className="overflow-hidden bg-slate-950 py-24 text-white sm:py-28" id="inside-groish">
+		<section className="overflow-hidden bg-slate-950 py-24 text-white sm:py-28" id="inside-groish-gallery">
 			<div className="container mx-auto px-4">
 				<motion.div
 					className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end"

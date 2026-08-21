@@ -3,10 +3,10 @@ import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform } fr
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import teamLahore from '@/hooks/company-images/IMG_6247.jpg';
-import officeWorkspace from '@/hooks/company-images/IMG_6258.jpg';
-import officeMeet from '@/hooks/company-images/IMG_6236.jpg';
-import teamDesk from '@/hooks/company-images/IMG_6248.jpg';
+const teamLahore = '/optimized-images/IMG_6247.jpg';
+const officeWorkspace = '/optimized-images/IMG_6258.jpg';
+const officeMeet = '/optimized-images/IMG_6236.jpg';
+const teamDesk = '/optimized-images/IMG_6248.jpg';
 
 const slides = [
   {

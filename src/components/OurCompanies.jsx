@@ -1,133 +1,113 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ArrowUpRight, BarChart3, Blocks, Building2, CheckCircle2, Code2, HeartPulse, Layers3, LineChart, Network, Rocket, Scale, ShoppingBag, Sparkles, Target, Workflow } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import lahoreOffice from '@/hooks/company-images/IMG_6247.jpg';
-import usaOffice from '@/hooks/company-images/WhatsApp Image 2026-08-06 at 00.55.00.jpeg';
+
+const images = {
+  hero: '/optimized-images/IMG_6236.jpg',
+  webcore: '/optimized-images/IMG_6247.jpg',
+  transmedex: '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg',
+  ecommerce: '/optimized-images/IMG_6262.jpg',
+  story: '/optimized-images/IMG_6258.jpg',
+};
 
 const companies = [
-	{
-		name: 'Webcore360',
-		description: 'GROISH digital growth and technology subsidiary focused on scalable digital performance, brand acceleration, and product-led growth.',
-		image: lahoreOffice,
-		url: 'https://www.webcore360.com/',
-		label: '01 / Digital growth',
-		meta: 'Lahore · Growth systems',
-		accent: 'from-sky-500/80 via-cyan-400/30 to-transparent',
-		variant: 'a',
-		keywords: ['SEO', 'Digital Marketing', 'Web Development', 'App Development', 'PPC', 'Branding', 'Growth'],
-	},
-	{
-		name: 'TransMedEx',
-		description: 'GROISH healthcare and revenue-cycle subsidiary delivering trusted operational support across medical billing, coding, credentialing, and care administration.',
-		image: usaOffice,
-		url: 'https://www.transmedex.org/',
-		label: '02 / Healthcare support',
-		meta: 'United States · Care operations',
-		accent: 'from-emerald-500/80 via-teal-400/30 to-transparent',
-		variant: 'b',
-		keywords: ['Medical Billing', 'RCM', 'Medical Coding', 'Credentialing', 'Healthcare Solutions'],
-	},
+  { number: '01', name: 'WebCore360', category: 'Technology & digital growth', meta: 'Lahore · Digital operations', image: images.webcore, alt: 'GROISH office workspace representing WebCore360 technology and digital operations', description: 'Technology, web development, software, digital solutions, SEO, marketing, branding, and growth services for organizations building their next stage.', capabilities: ['Web development', 'Software', 'SEO', 'Digital marketing', 'Branding', 'PPC'], icon: Code2, accent: 'from-sky-500/80 via-cyan-400/25 to-transparent', url: 'https://www.webcore360.com/' },
+  { number: '02', name: 'TransMedEx', category: 'Healthcare operations', meta: 'United States · Healthcare support', image: images.transmedex, alt: 'GROISH United States office representing TransMedEx healthcare operations', description: 'Healthcare revenue-cycle management, medical billing, coding, credentialing, and focused business support built around dependable operations.', capabilities: ['Revenue cycle management', 'Medical billing', 'Medical coding', 'Credentialing', 'Healthcare support', 'Operations'], icon: HeartPulse, accent: 'from-emerald-500/80 via-teal-400/25 to-transparent', url: 'https://www.transmedex.org/' },
+  { number: '03', name: 'E-commerce / Amazon Operations', category: 'Digital commerce', meta: 'Global marketplaces · E-commerce growth', image: images.ecommerce, alt: 'GROISH office interior representing e-commerce and Amazon marketplace operations', description: 'Marketplace management and e-commerce growth support across product research, listings, advertising, catalogs, fulfillment coordination, and private-label operations.', capabilities: ['Marketplace operations', 'Private label', 'Product research', 'Listing optimization', 'Advertising / PPC', 'Catalog management'], icon: ShoppingBag, accent: 'from-indigo-500/80 via-cyan-400/25 to-transparent', url: '/courses/ecommerce-startup' },
 ];
 
-const OurCompanies = () => {
-	return (
-		<section className="relative overflow-hidden bg-slate-950 py-24 text-white sm:py-32">
-			<div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.08),transparent_28%)]" />
-			<div className="relative container mx-auto px-4">
-				<motion.div
-					className="mb-14 max-w-3xl sm:mb-16"
-					initial={{ opacity: 0, y: 22 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true, amount: 0.3 }}
-					transition={{ duration: 0.7, ease: 'easeOut' }}
-				>
-					<p className="mb-4 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-cyan-300">The GROISH portfolio</p>
-					<h2 className="max-w-2xl text-4xl font-black tracking-[-0.07em] text-white sm:text-6xl">Independent companies. Shared direction.</h2>
-					<p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-						Explore the teams turning bold ideas into measurable progress across digital growth and healthcare.
-					</p>
-				</motion.div>
+const areas = [
+  ['Technology & Web Development', 'Websites, software, digital products, and technical systems that help organizations communicate, operate, and grow with clarity.', Code2],
+  ['Healthcare & RCM', 'Revenue-cycle, billing, coding, credentialing, and healthcare business support built around accurate, dependable operations.', HeartPulse],
+  ['E-commerce & Amazon Operations', 'Marketplace strategy, product workflows, advertising, listings, fulfillment coordination, and private-label execution.', ShoppingBag],
+  ['Digital Growth', 'SEO, performance marketing, PPC, branding, and practical growth systems that connect ambition to action.', LineChart],
+  ['Business Support', 'Focused capabilities and specialist teams that help businesses solve operational challenges without losing momentum.', Blocks],
+  ['Operational Services', 'Repeatable processes, ownership, and continuous improvement that make day-to-day work more scalable.', Workflow],
+];
 
-				<div className="grid grid-cols-1 gap-7 lg:grid-cols-2">
-					{companies.map((company, index) => (
-						<motion.article
-							key={company.name}
-							className="interactive-card magnetic group relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-[0_28px_90px_rgba(2,6,23,0.46)]"
-							initial={{ opacity: 0, y: 28 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true, amount: 0.2 }}
-							whileHover={{ y: -8 }}
-							transition={{ duration: 0.7, delay: index * 0.1, ease: 'easeOut' }}
-						>
-							<div className="relative h-[430px] overflow-hidden sm:h-[500px]">
-								<motion.img
-									src={company.image}
-									alt={`${company.name} operating environment`}
-									loading="lazy"
-									decoding="async"
-									sizes="(max-width: 1024px) 100vw, 50vw"
-									className="h-full w-full object-cover"
-									whileHover={{ scale: 1.12, x: 10, y: -8 }}
-									transition={{ duration: 1.2, ease: 'easeOut' }}
-								/>
+const stages = [
+  ['Identify', 'Find an opportunity, market need, or operational gap worth solving.', Target],
+  ['Build', 'Shape the business model, team, systems, and capabilities required to create value.', Blocks],
+  ['Operate', 'Establish focused workflows and accountable execution for the work that matters.', Workflow],
+  ['Optimize', 'Learn from performance, improve the system, and remove friction.', BarChart3],
+  ['Scale', 'Extend what works through stronger teams, processes, and deliberate growth.', Rocket],
+];
 
-								<div className={`absolute inset-0 bg-gradient-to-br ${company.accent} opacity-70 transition-all duration-700 group-hover:opacity-80`} />
-								<div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-transparent" />
-								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.06),rgba(15,23,42,0.12),rgba(2,6,23,0.78))]" />
+const principles = [['Innovation', Sparkles], ['Technology', Network], ['Operational Excellence', Scale], ['Scalability', Layers3], ['Long-Term Growth', LineChart]];
+const journey = ['Opportunity', 'Strategy', 'Build', 'Launch', 'Operations', 'Growth', 'Expansion'];
 
-								<div className="absolute left-6 top-6 z-20 flex items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-slate-100/80">
-									<span className="inline-block h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(103,232,249,0.7)]" />
-									{company.label}
-								</div>
+const Reveal = ({ children, className = '', delay = 0 }) => (
+  <motion.div className={className} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.16 }} transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}>
+    {children}
+  </motion.div>
+);
 
-								<div className="absolute inset-x-0 bottom-0 z-20 p-6 sm:p-8">
-									<div className="mb-4 flex items-center justify-between gap-3 text-[0.68rem] uppercase tracking-[0.18em] text-slate-200/80">
-										<span>{company.meta}</span>
-										<span className="inline-flex h-2 w-2 rounded-full bg-white/70" />
-									</div>
+const Explore = ({ company }) => company.url.startsWith('http') ? (
+  <Button asChild variant="outline" className="border-white/20 bg-white/5 text-white hover:bg-white/15 hover:text-white">
+    <a href={company.url} target="_blank" rel="noreferrer noopener" aria-label={`Explore ${company.name}`}>
+      Explore <ArrowUpRight className="ml-2 h-4 w-4" />
+    </a>
+  </Button>
+) : (
+  <Button asChild variant="outline" className="border-white/20 bg-white/5 text-white hover:bg-white/15 hover:text-white">
+    <Link to={company.url} aria-label={`Explore ${company.name}`}>
+      Explore <ArrowRight className="ml-2 h-4 w-4" />
+    </Link>
+  </Button>
+);
 
-									<div className="max-w-[92%] translate-y-0 opacity-100 transition-all duration-500 ease-out md:max-w-[80%] md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
-										<h3 className="text-3xl font-black tracking-[-0.06em] text-white sm:text-4xl">{company.name}</h3>
-										<p className="mt-3 max-w-md text-sm leading-6 text-slate-200/90 sm:text-base">
-											{company.description}
-										</p>
-										{company.keywords && company.keywords.length > 0 && (
-											<div className="mt-4 flex flex-wrap gap-2">
-												{company.keywords.map((keyword, keywordIndex) => (
-													<motion.span
-														key={keyword}
-														initial={{ opacity: 0, y: 8 }}
-														whileInView={{ opacity: 1, y: 0 }}
-														viewport={{ once: true, amount: 0.3 }}
-														transition={{ duration: 0.45, delay: 0.2 + keywordIndex * 0.06, ease: 'easeOut' }}
-														className="inline-flex items-center rounded-full border border-cyan-300/25 bg-slate-950/40 px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-cyan-100"
-													>
-														{keyword}
-													</motion.span>
-												))}
-											</div>
-										)}
-									</div>
+const OurCompanies = () => (
+  <section id="inside-groish" className="overflow-hidden bg-slate-950 text-white">
+    <section aria-labelledby="inside-heading" className="relative isolate min-h-[680px] overflow-hidden">
+      <motion.div className="absolute inset-0" initial={{ scale: 1.04, opacity: 0.7 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.4, ease: 'easeOut' }}>
+        <img src={images.hero} alt="GROISH team workspace representing a diversified business ecosystem" className="h-full w-full object-cover" fetchPriority="high" decoding="async" sizes="100vw" />
+      </motion.div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_18%,rgba(103,232,249,0.22),transparent_25%),linear-gradient(90deg,rgba(2,6,23,0.96),rgba(2,6,23,0.68)_50%,rgba(2,6,23,0.24))]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+      <div className="container relative mx-auto flex min-h-[680px] items-end px-4 pb-20 pt-32 sm:px-6 sm:pb-28 lg:px-8">
+        <Reveal className="max-w-4xl">
+          <p className="text-[0.68rem] font-bold uppercase tracking-[0.3em] text-cyan-200">Inside GROISH · Our Companies</p>
+          <h2 id="inside-heading" className="mt-6 max-w-4xl text-5xl font-black leading-[0.94] tracking-[-0.08em] sm:text-7xl lg:text-8xl">One Group. Multiple Businesses. One Direction.</h2>
+          <p className="mt-7 max-w-2xl text-base leading-7 text-slate-200 sm:text-xl sm:leading-8">GROISH builds, operates, and supports specialized businesses across technology, healthcare services, e-commerce, digital operations, and business solutions.</p>
+          <div className="mt-9 flex flex-wrap gap-4">
+            <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-cyan-50"><Link to="#groish-ecosystem">Explore the ecosystem <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+            <Button asChild size="lg" variant="outline" className="border-white/25 bg-white/10 text-white hover:bg-white/20 hover:text-white"><Link to="/about">Meet GROISH <ArrowUpRight className="ml-2 h-4 w-4" /></Link></Button>
+          </div>
+        </Reveal>
+      </div>
+    </section>
 
-									<a
-										href={company.url}
-										target="_blank"
-										rel="noreferrer noopener"
-										className="magnetic mt-5 inline-flex translate-y-0 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white opacity-100 backdrop-blur-sm transition-all duration-500 ease-out md:translate-y-6 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100"
-							data-cursor="Explore"
-									>
-											Explore {company.name}
-										<ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-									</a>
-								</div>
-							</div>
-						</motion.article>
-					))}
-				</div>
-			</div>
-		</section>
-	);
-};
+    <section id="groish-ecosystem" aria-labelledby="ecosystem-heading" className="border-y border-white/10 bg-slate-950 py-24 sm:py-32">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal className="mx-auto max-w-3xl text-center"><p className="eyebrow text-cyan-300">The GROISH Ecosystem</p><h2 id="ecosystem-heading" className="mt-4 text-4xl font-black tracking-[-0.07em] sm:text-6xl">A parent company. Focused businesses.</h2><p className="mt-5 text-base leading-7 text-slate-300 sm:text-lg">GROISH provides direction, systems, and operating support while each business stays focused on its market, customers, and specialist capabilities.</p></Reveal>
+        <div className="relative mx-auto mt-14 max-w-6xl">
+          <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-px w-[72%] -translate-x-1/2 bg-gradient-to-r from-cyan-300/10 via-cyan-300/60 to-emerald-300/10 lg:block" aria-hidden="true" />
+          <div className="mb-8 flex justify-center lg:absolute lg:left-1/2 lg:top-1/2 lg:z-10 lg:mb-0 lg:-translate-x-1/2 lg:-translate-y-1/2"><div className="flex h-36 w-36 flex-col items-center justify-center rounded-full border border-cyan-200/40 bg-slate-900/90 text-center shadow-[0_0_80px_rgba(34,211,238,0.16)] backdrop-blur sm:h-44 sm:w-44"><Building2 className="h-7 w-7 text-cyan-300" /><span className="mt-3 text-lg font-black">GROISH</span><span className="mt-1 text-[0.58rem] font-bold uppercase tracking-[0.2em] text-slate-400">Parent company</span></div></div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {companies.map((company, index) => { const Icon = company.icon; return <Reveal key={company.name} delay={index * 0.08} className="h-full"><article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.055] shadow-[0_24px_70px_rgba(2,6,23,0.3)] transition-colors duration-500 hover:border-cyan-200/40"><div className="relative h-52 overflow-hidden"><img src={company.image} alt={company.alt} loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 33vw" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.045]" /><div className={`absolute inset-0 bg-gradient-to-br ${company.accent}`} /><div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" /><div className="absolute left-5 top-5 rounded-full border border-white/20 bg-slate-950/35 px-3 py-1.5 text-[0.58rem] font-bold uppercase tracking-[0.18em] text-white">GROISH Business</div><div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3"><div><p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-cyan-100/80">{company.number} / {company.category}</p><h3 className="mt-2 text-2xl font-black tracking-[-0.06em]">{company.name}</h3></div><Icon className="h-6 w-6 shrink-0 text-cyan-200" /></div></div><div className="flex flex-1 flex-col p-5 sm:p-6"><p className="text-sm leading-6 text-slate-300">{company.description}</p><div className="mt-5 flex flex-wrap gap-2">{company.capabilities.slice(0, 4).map((item) => <span key={item} className="rounded-full border border-cyan-200/20 bg-cyan-200/5 px-2.5 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.1em] text-cyan-100">{item}</span>)}</div><div className="mt-auto pt-6"><Explore company={company} /></div></div></article></Reveal>; })}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="areas-heading" className="bg-white py-24 text-slate-950 sm:py-32"><div className="container mx-auto px-4 sm:px-6 lg:px-8"><Reveal className="max-w-3xl"><p className="eyebrow text-cyan-700">What We Build & Operate</p><h2 id="areas-heading" className="mt-4 text-4xl font-black tracking-[-0.07em] sm:text-6xl">Capabilities with a clear operating purpose.</h2><p className="mt-5 text-base leading-7 text-slate-600 sm:text-lg">GROISH brings together specialist capabilities that can stand alone, work together, or support the next opportunity across the wider ecosystem.</p></Reveal><div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{areas.map(([title, description, Icon], index) => <Reveal key={title} delay={index * 0.05}><article className="group h-full rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-[0_22px_55px_rgba(15,23,42,0.09)]"><div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-cyan-700 shadow-sm transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-3"><Icon className="h-6 w-6" /></div><h3 className="mt-7 text-xl font-black tracking-[-0.04em]">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{description}</p></article></Reveal>)}</div></div></section>
+
+    <section aria-labelledby="story-heading" className="bg-slate-100 py-24 text-slate-950 sm:py-32"><div className="container mx-auto grid items-center gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-8"><Reveal><p className="eyebrow text-cyan-700">The group mindset</p><h2 id="story-heading" className="mt-4 text-4xl font-black leading-[0.98] tracking-[-0.07em] sm:text-6xl">Built as a Group. Designed to Move Businesses Forward.</h2><p className="mt-6 text-base leading-8 text-slate-600">GROISH identifies opportunities, builds specialized teams, develops useful systems, establishes operational processes, and supports individual businesses as they grow. The goal is not to make every business look the same. It is to give each one the focus and foundation to move with confidence.</p><div className="mt-8 grid gap-3 sm:grid-cols-2">{['Focused teams', 'Practical systems', 'Clear ownership', 'Continuous improvement'].map((item) => <div key={item} className="flex items-center gap-3 text-sm font-semibold text-slate-800"><CheckCircle2 className="h-5 w-5 text-cyan-700" />{item}</div>)}</div></Reveal><Reveal delay={0.08}><div className="relative overflow-hidden rounded-[2rem] border border-white bg-slate-950 shadow-[0_30px_80px_rgba(15,23,42,0.16)]"><img src={images.story} alt="GROISH collaborative workspace supporting business systems and operations" loading="lazy" decoding="async" sizes="(max-width: 1024px) 100vw, 55vw" className="h-[420px] w-full object-cover sm:h-[560px]" /><div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-cyan-300/10" /><div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/15 bg-slate-950/60 p-5 backdrop-blur-sm"><p className="eyebrow text-cyan-200">From direction to execution</p><p className="mt-2 text-lg font-semibold leading-7 text-white">Shared support. Specialized execution. A longer view.</p></div></div></Reveal></div></section>
+
+    <section aria-labelledby="businesses-heading" className="bg-slate-950 py-24 sm:py-32"><div className="container mx-auto px-4 sm:px-6 lg:px-8"><Reveal className="max-w-3xl"><p className="eyebrow text-cyan-300">Our Businesses</p><h2 id="businesses-heading" className="mt-4 text-4xl font-black tracking-[-0.07em] sm:text-6xl">Different disciplines. One connected direction.</h2></Reveal><div className="mt-12 divide-y divide-white/10 border-y border-white/10">{companies.map((company, index) => { const Icon = company.icon; return <Reveal key={company.name} delay={index * 0.06}><article className="grid gap-6 py-8 md:grid-cols-[0.8fr_1.4fr_auto] md:items-center"><div className="flex items-start gap-4"><div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-cyan-200/20 bg-cyan-200/5 text-cyan-200"><Icon className="h-6 w-6" /></div><div><p className="eyebrow text-cyan-300">{company.number} · {company.category}</p><h3 className="mt-2 text-2xl font-black tracking-[-0.05em]">{company.name}</h3><p className="mt-2 text-xs uppercase tracking-[0.12em] text-slate-500">{company.meta}</p></div></div><div><p className="text-base leading-7 text-slate-300">{company.description}</p><div className="mt-4 flex flex-wrap gap-2">{company.capabilities.map((item) => <span key={item} className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-400">{item}</span>)}</div></div><div><Explore company={company} /></div></article></Reveal>; })}</div></div></section>
+
+    <section aria-labelledby="value-heading" className="bg-white py-24 text-slate-950 sm:py-32"><div className="container mx-auto px-4 sm:px-6 lg:px-8"><Reveal className="mx-auto max-w-3xl text-center"><p className="eyebrow text-cyan-700">How GROISH Creates Value</p><h2 id="value-heading" className="mt-4 text-4xl font-black tracking-[-0.07em] sm:text-6xl">A connected path from opportunity to scale.</h2></Reveal><div className="mx-auto mt-14 grid max-w-6xl gap-4 md:grid-cols-5">{stages.map(([title, description, Icon], index) => <Reveal key={title} delay={index * 0.06}><article className="group h-full rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-[0_18px_45px_rgba(15,23,42,0.08)]"><div className="flex items-center justify-between"><span className="text-xs font-bold tracking-[0.18em] text-cyan-700">0{index + 1}</span><Icon className="h-5 w-5 text-slate-400 group-hover:text-cyan-700" /></div><h3 className="mt-8 text-lg font-black">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{description}</p></article></Reveal>)}</div></div></section>
+
+    <section aria-labelledby="vision-heading" className="relative overflow-hidden border-y border-cyan-100 bg-gradient-to-b from-blue-50 to-white py-24 text-slate-950 sm:py-32"><div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-200/30 blur-3xl" aria-hidden="true" /><div className="container relative mx-auto px-4 sm:px-6 lg:px-8"><Reveal className="mx-auto max-w-3xl text-center"><p className="eyebrow text-cyan-700">Connected by One Vision</p><h2 id="vision-heading" className="mt-4 text-4xl font-black tracking-[-0.07em] sm:text-6xl">Common principles. Different markets.</h2><p className="mt-5 text-base leading-7 text-slate-600">The businesses in the GROISH ecosystem operate in distinct fields, but they share a commitment to building useful capabilities and durable growth.</p></Reveal><div className="mx-auto mt-14 flex max-w-5xl flex-wrap justify-center gap-3 sm:gap-4">{principles.map(([title, Icon], index) => <motion.div key={title} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.45, delay: index * 0.06 }} className="group flex items-center gap-3 rounded-full border border-slate-200 bg-white/80 px-5 py-3 shadow-[0_12px_30px_rgba(15,23,42,0.05)] backdrop-blur transition-all hover:-translate-y-1 hover:border-cyan-200"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-cyan-50 text-cyan-700 group-hover:rotate-6"><Icon className="h-4 w-4" /></span><span className="text-sm font-bold text-slate-800">{title}</span></motion.div>)}</div></div></section>
+
+    <section aria-labelledby="journey-heading" className="bg-slate-100 py-24 text-slate-950 sm:py-32"><div className="container mx-auto px-4 sm:px-6 lg:px-8"><Reveal className="mx-auto max-w-3xl text-center"><p className="eyebrow text-cyan-700">A Conceptual Journey</p><h2 id="journey-heading" className="mt-4 text-4xl font-black tracking-[-0.07em] sm:text-6xl">From One Idea to Multiple Businesses.</h2><p className="mt-5 text-base leading-7 text-slate-600">Every opportunity takes its own shape. This conceptual journey turns a possibility into a focused business and a stronger platform for growth without inventing historical dates.</p></Reveal><div className="mx-auto mt-14 grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-7">{journey.map((stage, index) => <Reveal key={stage} delay={index * 0.05}><div className="flex h-full flex-col items-center rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-[0_12px_30px_rgba(15,23,42,0.04)]"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-950 text-sm font-bold text-white">{index + 1}</span><h3 className="mt-4 text-sm font-bold text-slate-800">{stage}</h3>{index < journey.length - 1 && <ArrowRight className="mt-4 hidden h-4 w-4 text-cyan-600 lg:block" aria-hidden="true" />}</div></Reveal>)}</div></div></section>
+
+    <section aria-labelledby="gallery-heading" className="bg-white py-24 text-slate-950 sm:py-32"><div className="container mx-auto px-4 sm:px-6 lg:px-8"><Reveal className="flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="eyebrow text-cyan-700">Inside the work</p><h2 id="gallery-heading" className="mt-4 text-4xl font-black tracking-[-0.07em] sm:text-6xl">Spaces built for focused progress.</h2></div><p className="max-w-md text-sm leading-6 text-slate-600">A look at the environments and working moments that support the GROISH ecosystem.</p></Reveal><div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{['IMG_6238.jpg', 'IMG_6240.jpg', 'IMG_6248.jpg', 'IMG_6259.jpg'].map((file, index) => <figure key={file} className={`group overflow-hidden rounded-[1.5rem] bg-slate-950 ${index === 0 ? 'sm:col-span-2 lg:col-span-2' : ''} ${index === 3 ? 'sm:col-span-2 lg:col-span-4' : ''}`}><img src={`/optimized-images/${file}`} alt={`GROISH office environment ${index + 1} supporting collaborative business operations`} loading="lazy" decoding="async" sizes={index === 3 ? '(max-width: 640px) 100vw, 100vw' : '(max-width: 640px) 100vw, 25vw'} className={`w-full object-cover transition-transform duration-700 group-hover:scale-[1.035] ${index === 3 ? 'h-64 sm:h-80' : 'h-80 sm:h-[420px]'}`} /></figure>)}</div></div></section>
+
+    <section aria-labelledby="cta-heading" className="relative overflow-hidden bg-slate-950 py-24 text-white sm:py-32"><div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.16),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.16),transparent_30%)]" aria-hidden="true" /><div className="container relative mx-auto px-4 text-center sm:px-6 lg:px-8"><Reveal className="mx-auto max-w-4xl"><p className="eyebrow text-cyan-300">The next chapter</p><h2 id="cta-heading" className="mt-4 text-4xl font-black tracking-[-0.07em] sm:text-6xl">The Next Business Could Be Ours to Build Together.</h2><p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">GROISH works with clients, partners, entrepreneurs, and organizations to build scalable opportunities and practical solutions.</p><div className="mt-9 flex flex-wrap justify-center gap-4"><Button asChild size="lg" className="bg-white text-slate-950 hover:bg-cyan-50"><Link to="/contact">Start a Conversation <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><Button asChild size="lg" variant="outline" className="border-white/25 bg-white/10 text-white hover:bg-white/20 hover:text-white"><Link to="/services">Explore Our Services <ArrowUpRight className="ml-2 h-4 w-4" /></Link></Button></div></Reveal></div></section>
+  </section>
+);
 
 export default OurCompanies;

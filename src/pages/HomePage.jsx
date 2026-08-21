@@ -10,10 +10,10 @@ import InsideGroish from '@/components/InsideGroish';
 import GlobalPresence from '@/components/GlobalPresence';
 import AboutGroish from '@/components/AboutGroish';
 import EcosystemMarquee from '@/components/EcosystemMarquee';
-import lahoreOffice from '@/hooks/company-images/IMG_6247.jpg';
-import officeWorkspace from '@/hooks/company-images/IMG_6258.jpg';
-import officeInterior from '@/hooks/company-images/IMG_6262.jpg';
-import usaOffice from '@/hooks/company-images/WhatsApp Image 2026-08-06 at 00.55.00.jpeg';
+const lahoreOffice = '/optimized-images/IMG_6247.jpg';
+const officeWorkspace = '/optimized-images/IMG_6258.jpg';
+const officeInterior = '/optimized-images/IMG_6262.jpg';
+const usaOffice = '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg';
 import { ArrowUpRight, CheckCircle2, Code2, Globe2, GraduationCap, Headphones, Layers3, LineChart } from 'lucide-react';
 
 const HomePage = () => {
@@ -64,8 +64,25 @@ const HomePage = () => {
   return (
     <div className="groish-page-shell pt-20">
       <Helmet>
-        <title>Groish - Best Amazon Courses in Pakistan</title>
-        <meta name="description" content="Learn Amazon FBA wholesale, private label, and PPC with expert-led e-commerce training in Pakistan. Enroll now to start your successful business journey." />
+        <title>Inside GROISH | Technology, Healthcare, E-commerce & Business Operations</title>
+        <meta name="description" content="Explore GROISH, a parent company building and supporting specialized businesses across technology, healthcare services, e-commerce, digital growth, and business operations." />
+        <link rel="canonical" href="https://groish.com/" />
+        <meta property="og:title" content="Inside GROISH | One Group. Multiple Businesses. One Direction." />
+        <meta property="og:description" content="Discover the GROISH business ecosystem across WebCore360, TransMedEx, e-commerce, technology, healthcare services, and digital operations." />
+        <meta property="og:url" content="https://groish.com/" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Corporation',
+          name: 'GROISH',
+          url: 'https://groish.com/',
+          description: 'GROISH is a parent company building and supporting specialized businesses across technology, healthcare services, e-commerce, digital growth, and business operations.',
+          subOrganization: [
+            { '@type': 'Organization', name: 'WebCore360' },
+            { '@type': 'Organization', name: 'TransMedEx' },
+            { '@type': 'Organization', name: 'E-commerce / Amazon Operations' },
+          ],
+        })}</script>
       </Helmet>
       
       <HeroSlider />
@@ -244,6 +261,9 @@ const HomePage = () => {
                   <motion.img
                     src={item.image}
                     alt={item.name}
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="h-full w-full object-cover"
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 1.2, ease: 'easeOut' }}

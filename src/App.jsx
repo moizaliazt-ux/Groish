@@ -5,8 +5,8 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FinalCTA from '@/components/FinalCTA';
-import HomePage from '@/pages/HomePage';
 
+const HomePage = lazy(() => import('@/pages/HomePage'));
 const AmazonFBAWholesalePage = lazy(() => import('@/pages/AmazonFBAWholesalePage'));
 const AmazonPrivateLabelPage = lazy(() => import('@/pages/AmazonPrivateLabelPage'));
 const AmazonPPCPage = lazy(() => import('@/pages/AmazonPPCPage'));
