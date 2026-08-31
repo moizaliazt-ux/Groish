@@ -25,7 +25,7 @@ const BlogDetail = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": post.faqs.map(faq => ({
+            "mainEntity": (post.faqs || []).map(faq => ({
               "@type": "Question",
               "name": faq.q,
               "acceptedAnswer": {

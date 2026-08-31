@@ -83,7 +83,10 @@
 
   img {
     @apply max-w-full;
+    display: block;
   }
+
+  button { font: inherit; }
 
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -393,6 +396,13 @@
     grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
     align-items: start;
     gap: 1rem;
+  }
+
+  .groish-section-frame > section,
+  .about-flow__item,
+  .service-evolution__item {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 520px;
   }
 
   .about-flow__item {
@@ -783,7 +793,7 @@
   .service-evolution__item {
     position: relative;
     display: grid;
-    grid-template-columns: 7rem 2.25rem 1fr;
+    grid-template-columns: minmax(5.5rem, 7rem) 2.25rem minmax(0, 1fr);
     gap: 1rem;
     align-items: start;
     padding-bottom: 2.25rem;
@@ -1149,8 +1159,9 @@
     }
 
     .groish-ambient {
-      opacity: 0.28;
-      filter: blur(34px);
+      opacity: 0.2;
+      filter: blur(26px);
+      animation: none;
     }
 
     .groish-page-shell::before {
@@ -1162,6 +1173,49 @@
       opacity: 0.4;
     }
 
+    .groish-page-shell::before { animation: none; }
+
+    .about-hero__title {
+      font-size: clamp(2.9rem, 14vw, 5.4rem);
+      line-height: 0.94;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(3rem, 14vw, 6rem);
+      line-height: 0.94;
+    }
+
+    .service-evolution__item { grid-template-columns: 1.5rem minmax(0, 1fr); }
+    .service-evolution__content { min-width: 0; }
+
+    .groish-photo-shell { cursor: pointer; }
+    .groish-photo-shell:focus-visible {
+      outline: 2px solid rgb(103 232 249);
+      outline-offset: 4px;
+    }
+
+
+  @media (min-width: 769px) and (max-width: 1100px) {
+    .about-flow { gap: 0.6rem; }
+    .about-flow__connector { transform: scale(0.8); }
+    .service-evolution__item { grid-template-columns: 6rem 1.75rem minmax(0, 1fr); gap: 0.75rem; }
+  }
+
+  @media (max-width: 420px) {
+    .container { padding-left: 1rem; padding-right: 1rem; }
+    .about-hero { min-height: 590px; }
+    .contact-form-card { border-radius: 1.25rem; padding: 1.25rem; }
+    .groish-photo-shell { border-radius: 1.25rem; }
+  }
+
+  body.gallery-modal-open { overflow: hidden; }
+
+  .groish-photo-shell {
+    appearance: none;
+    border: 0;
+    color: inherit;
+    text-align: left;
+  }
     .final-cta__light,
     .final-cta__light--secondary {
       animation-duration: 24s;

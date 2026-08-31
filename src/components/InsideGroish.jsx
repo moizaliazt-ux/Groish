@@ -57,6 +57,19 @@ const InsideGroish = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		if (!activeImage) return undefined;
+		const handleKeyDown = (event) => {
+			if (event.key === 'Escape') setActiveImage(null);
+		};
+		document.body.classList.add('gallery-modal-open');
+		document.addEventListener('keydown', handleKeyDown);
+		return () => {
+			document.body.classList.remove('gallery-modal-open');
+			document.removeEventListener('keydown', handleKeyDown);
+		};
+	}, [activeImage]);
+
 	return (
 		<section className="overflow-hidden bg-slate-950 py-24 text-white sm:py-28" id="inside-groish-gallery">
 			<div className="container mx-auto px-4">
@@ -83,8 +96,10 @@ const InsideGroish = () => {
 					</div>
 					<div ref={carouselRef} className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-4 pb-6 touch-pan-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6">
 						{galleryImages.map((image, index) => (
-							<motion.figure
+							<motion.button
 								key={image.src}
+								type="button"
+								aria-label={`View ${image.alt}`}
 								className={`groish-photo-shell interactive-card magnetic group relative shrink-0 snap-start rounded-[2rem] border border-white/10 bg-slate-900 ${
 									image.featured ? 'h-[390px] w-[min(84vw,620px)] sm:h-[520px]' : image.reverse ? 'h-[300px] w-[min(76vw,470px)] self-start sm:h-[420px]' : 'h-[300px] w-[min(74vw,430px)] self-end sm:h-[420px]'
 								}`}
@@ -114,7 +129,7 @@ const InsideGroish = () => {
 									<div className="mt-2 text-base font-semibold leading-6 text-white sm:mt-3 sm:text-xl">{image.label}</div>
 									<p className="mt-2 max-w-[85%] text-sm leading-6 text-slate-300 sm:text-base">Touch to enlarge</p>
 								</div>
-							</motion.figure>
+							</motion.button>
 						))}
 					</div>
 				</div>
@@ -127,6 +142,9 @@ const InsideGroish = () => {
 				<AnimatePresence>
 					{activeImage && (
 						<motion.div
+							role="dialog"
+							aria-modal="true"
+							aria-label={activeImage.alt}
 							className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 p-4 backdrop-blur-sm"
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
@@ -134,7 +152,7 @@ const InsideGroish = () => {
 							onClick={() => setActiveImage(null)}
 						>
 							<motion.div
-								className="relative mx-auto max-w-[95vw] max-h-[95vh] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950 shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
+								className="relative mx-auto max-h-[calc(100dvh-2rem)] max-w-[95vw] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950 shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
 								initial={{ scale: 0.95 }}
 								animate={{ scale: 1 }}
 								exit={{ scale: 0.95 }}
@@ -144,7 +162,7 @@ const InsideGroish = () => {
 								<motion.img
 									src={activeImage.src}
 									alt={activeImage.alt}
-									className="h-[75vh] w-full object-cover"
+									className="max-h-[calc(100dvh-2rem)] w-full object-contain"
 									initial={{ opacity: 0.8 }}
 									animate={{ opacity: 1 }}
 									transition={{ duration: 0.35, ease: 'easeOut' }}
@@ -158,6 +176,7 @@ const InsideGroish = () => {
 									type="button"
 									onClick={() => setActiveImage(null)}
 									className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-slate-900/80 text-slate-100 shadow-lg shadow-slate-950/40 transition hover:bg-slate-800"
+									aria-label="Close gallery viewer"
 								>
 									<X className="h-5 w-5" />
 								</button>

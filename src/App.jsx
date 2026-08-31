@@ -58,6 +58,7 @@ function AnimatedRoutes() {
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/why-choose-us" element={<WhyChoosePage />} />
           <Route path="/careers" element={<CareersPage />} />
+          <Route path="*" element={<div className="flex min-h-[50vh] items-center justify-center px-6 text-center"><div><p className="text-sm font-bold uppercase tracking-[0.2em] text-cyan-700">404</p><h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950">Page not found</h1><a className="mt-6 inline-flex rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white" href="/">Return home</a></div></div>} />
         </Routes>
       </motion.div>
     </AnimatePresence>

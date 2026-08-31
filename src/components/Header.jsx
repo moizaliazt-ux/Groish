@@ -173,7 +173,7 @@ const Header = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             id="mobile-navigation"
-            className="overflow-hidden border-t border-white/10 bg-white/95 backdrop-blur-xl md:hidden"
+            className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-white/10 bg-white/95 backdrop-blur-xl md:hidden"
           >
             <div className="container mx-auto space-y-2 px-4 py-4">
               {navItems.filter((item) => item.label !== 'Services').map((item) => (

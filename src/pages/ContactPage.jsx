@@ -49,12 +49,22 @@ const ContactPage = () => {
     }
 
     setStatus('loading');
-    const serviceName = servicePageConfig[formData.service]?.name || formData.service;
-    const subject = encodeURIComponent(`New ${serviceName} inquiry from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company || 'Not provided'}\nService: ${serviceName}\n\nProject details:\n${formData.message}`);
-    window.location.href = `mailto:info@groish.com?subject=${subject}&body=${body}`;
-    setStatus('success');
-    toast({ title: 'Your email draft is ready', description: 'Your email client should open with the inquiry details filled in.' });
+    fetch('/hcgi/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...formData, service: servicePageConfig[formData.service]?.name || formData.service }),
+    })
+      .then(async (response) => {
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.errors?.join(' ') || result.error || 'Unable to send your inquiry.');
+        setStatus('success');
+        setFormData(initialForm);
+        toast({ title: 'Message sent', description: 'Thanks for reaching out. We will be in touch soon.' });
+      })
+      .catch((error) => {
+        setStatus('idle');
+        toast({ title: 'Message not sent', description: error.message, variant: 'destructive' });
+      });
   };
 
   return (

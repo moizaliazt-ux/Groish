@@ -16,6 +16,9 @@ const AllowedEditorOrigins = [
 ];
 
 const configHorizonsViteErrorHandler = `
+const horizonsAllowedOrigins = ${JSON.stringify(AllowedEditorOrigins)};
+const horizonsParentOrigin = (() => { try { return new URL(document.referrer).origin; } catch { return ''; } })();
+
 const observer = new MutationObserver((mutations) => {
 	for (const mutation of mutations) {
 		for (const addedNode of mutation.addedNodes) {
@@ -54,16 +57,21 @@ function handleViteOverlay(node) {
 		const fileText = fileElement ? fileElement.textContent.trim() : '';
 		const error = messageText + (fileText ? ' File:' + fileText : '');
 
+		if (!horizonsAllowedOrigins.includes(horizonsParentOrigin)) return;
 		window.parent.postMessage({
 			type: 'horizons-vite-error',
 			error,
-		}, '*');
+		}, horizonsParentOrigin);
 	}
 }
 `;
 
 const configHorizonsRuntimeErrorHandler = `
+const horizonsAllowedOrigins = ${JSON.stringify(AllowedEditorOrigins)};
+const horizonsParentOrigin = (() => { try { return new URL(document.referrer).origin; } catch { return ''; } })();
+
 window.onerror = (message, source, lineno, colno, errorObj) => {
+	if (!horizonsAllowedOrigins.includes(horizonsParentOrigin)) return;
 	const errorDetails = errorObj ? JSON.stringify({
 		name: errorObj.name,
 		message: errorObj.message,
@@ -77,11 +85,14 @@ window.onerror = (message, source, lineno, colno, errorObj) => {
 		type: 'horizons-runtime-error',
 		message,
 		error: errorDetails
-	}, '*');
+	}, horizonsParentOrigin);
 };
 `;
 
 const configHorizonsConsoleErrorHandler = `
+const horizonsAllowedOrigins = ${JSON.stringify(AllowedEditorOrigins)};
+const horizonsParentOrigin = (() => { try { return new URL(document.referrer).origin; } catch { return ''; } })();
+
 const originalConsoleError = console.error;
 const MATCH_LINE_COL_REGEX = /:(\\d+):(\\d+)\\)?\\s*$/; // regex to match the :lineNum:colNum
 const MATCH_AT_REGEX = /^\\s*at\\s+(?:async\\s+)?(?:.*?\\s+)?\\(?/; // regex to remove the 'at' keyword and any 'async' or function name
@@ -119,6 +130,7 @@ function getFilePathFromStack(stack, skipFrames = 0) {
 
 console.error = function(...args) {
 	originalConsoleError.apply(console, args);
+	if (!horizonsAllowedOrigins.includes(horizonsParentOrigin)) return;
 
 	let errorString = '';
 	let filePath = null;
@@ -147,7 +159,7 @@ console.error = function(...args) {
 	window.parent.postMessage({
 		type: 'horizons-console-error',
 		error: errorString
-	}, '*');
+	}, horizonsParentOrigin);
 };
 `;
 
@@ -191,6 +203,9 @@ window.fetch = function(...args) {
 `;
 
 const configNavigationHandler = `
+const horizonsAllowedOrigins = ${JSON.stringify(AllowedEditorOrigins)};
+const horizonsParentOrigin = (() => { try { return new URL(document.referrer).origin; } catch { return ''; } })();
+
 if (window.navigation && window.self !== window.top) {
 	window.navigation.addEventListener('navigate', (event) => {
 		const url = event.destination.url;
@@ -207,10 +222,11 @@ if (window.navigation && window.self !== window.top) {
 			return;
 		}
 
+		if (!horizonsAllowedOrigins.includes(horizonsParentOrigin)) return;
 		window.parent.postMessage({
 			type: 'horizons-navigation-error',
 			url,
-		}, '*');
+		}, horizonsParentOrigin);
 	});
 }
 `;
@@ -255,27 +271,12 @@ const addTransformIndexHtml = {
 			},
 		];
 
-		if (!isDev && process.env.TEMPLATE_BANNER_SCRIPT_URL && process.env.TEMPLATE_REDIRECT_URL) {
-			tags.push(
-				{
-					tag: 'script',
-					attrs: {
-						src: process.env.TEMPLATE_BANNER_SCRIPT_URL,
-						'template-redirect-url': process.env.TEMPLATE_REDIRECT_URL,
-					},
-					injectTo: 'head',
-				}
-			);
-		}
-
 		return {
 			html,
 			tags,
 		};
 	},
 };
-
-console.warn = () => {};
 
 const logger = createLogger()
 const loggerError = logger.error
@@ -289,14 +290,11 @@ logger.error = (msg, options) => {
 }
 
 export default defineConfig({
-	customLogger: logger,
-	plugins: [
-		...(isDev ? [inlineEditPlugin(), editModeDevPlugin(), iframeRouteRestorationPlugin(), selectionModePlugin(), sitePagesPlugin()] : []),
-		react(),
-		addTransformIndexHtml
-	],
 	server: {
 		cors: { origin: AllowedEditorOrigins },
+		proxy: {
+			'/hcgi/api': 'http://localhost:3001',
+		},
 		headers: {
 			'Cross-Origin-Embedder-Policy': 'credentialless',
 		},
@@ -305,6 +303,12 @@ export default defineConfig({
 			'.app-preview.io',
 		],
 	},
+	customLogger: logger,
+	plugins: [
+		...(isDev ? [inlineEditPlugin(), editModeDevPlugin(), iframeRouteRestorationPlugin(), selectionModePlugin(), sitePagesPlugin()] : []),
+		react(),
+		addTransformIndexHtml
+	],
 	resolve: {
 		extensions: ['.jsx', '.js', '.tsx', '.ts', '.json', ],
 		alias: {

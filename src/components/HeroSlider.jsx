@@ -58,10 +58,26 @@ const HeroSlider = () => {
 
   useEffect(() => {
     if (reduceMotion) return undefined;
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
+    let timer;
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = undefined;
+    };
+    const start = () => {
+      stop();
+      if (!document.hidden) {
+        timer = window.setInterval(() => {
+          setCurrent((prev) => (prev + 1) % slides.length);
+        }, 5000);
+      }
+    };
+    const handleVisibility = () => (document.hidden ? stop() : start());
+    document.addEventListener('visibilitychange', handleVisibility);
+    start();
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+      stop();
+    };
   }, [reduceMotion]);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
