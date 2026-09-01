@@ -33,8 +33,12 @@ const Footer = () => (
           />
         </Link>
         <p className="mt-6 max-w-sm text-sm leading-7 text-slate-400">GROISH is the parent business group behind multiple specialized companies across technology, growth, healthcare, e-commerce, and education.</p>
-        <div className="mt-7 flex items-center gap-3" aria-label="Social links coming soon">
-          {[Facebook, Instagram, Linkedin].map((Icon) => <span key={Icon.displayName || Icon.name} title="Social link coming soon" className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-500"><Icon className="h-4 w-4" /></span>)}
+        <div className="mt-7 flex items-center gap-3" aria-label="Social links">
+          {[
+            [Facebook, 'https://www.facebook.com/share/1EkTBobYsg/', 'Facebook'],
+            [Instagram, 'https://www.instagram.com/_groish_?igsi=MTUxZnN4ZmlnbzV0eg==', 'Instagram'],
+            [Linkedin, 'https://www.linkedin.com/company/110667603/admin/dashboard/', 'LinkedIn'],
+          ].map(([Icon, href, label]) => href ? <a key={label} href={href} target="_blank" rel="noreferrer noopener" aria-label={label} className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-500 transition-colors hover:border-cyan-300/40 hover:text-cyan-300"><Icon className="h-4 w-4" /></a> : <span key={label} aria-label={`${label} link unavailable`} className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-500"><Icon className="h-4 w-4" /></span>)}
         </div>
       </div>
       <div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import HeroSlider from '@/components/HeroSlider';
-import EnrollmentForm from '@/components/EnrollmentForm';
+import ContactForm from '@/components/ContactForm';
 import GroishEcommerce from '@/components/GroishEcommerce';
 import WhatWeDo from '@/components/WhatWeDo';
 import InsideGroish from '@/components/InsideGroish';
@@ -286,17 +286,15 @@ const HomePage = () => {
           <div className="grid items-center gap-12 md:grid-cols-2">
             <div>
               <p className="premium-eyebrow !text-cyan-300">Ready to start</p>
-              <h2 className="text-3xl font-black tracking-[-0.06em] text-white sm:text-5xl">Ready to Start Your Amazon Journey?</h2>
-              <p className="mt-5 text-base leading-7 text-slate-300">Join thousands of successful Pakistani students who have transformed their careers with Groish. Get hands-on training and real-world results.</p>
+              <h2 className="text-3xl font-black tracking-[-0.06em] text-white sm:text-5xl">Have a challenge worth solving?</h2>
+              <p className="mt-5 text-base leading-7 text-slate-300">Tell us what you are building, improving, or scaling. Our team will help you find the right next step across the GROISH ecosystem.</p>
               <ul className="mt-8 space-y-4">
-                <li className="flex items-center gap-3 text-slate-200"><CheckCircle2 className="h-5 w-5 shrink-0 text-green-400" /> Complete E-commerce training</li>
-                <li className="flex items-center gap-3 text-slate-200"><CheckCircle2 className="h-5 w-5 shrink-0 text-green-400" /> Real market strategies</li>
-                <li className="flex items-center gap-3 text-slate-200"><CheckCircle2 className="h-5 w-5 shrink-0 text-green-400" /> Dedicated mentorship</li>
+                <li className="flex items-center gap-3 text-slate-200"><CheckCircle2 className="h-5 w-5 shrink-0 text-green-400" /> Clear, practical recommendations</li>
+                <li className="flex items-center gap-3 text-slate-200"><CheckCircle2 className="h-5 w-5 shrink-0 text-green-400" /> Specialized teams for each need</li>
+                <li className="flex items-center gap-3 text-slate-200"><CheckCircle2 className="h-5 w-5 shrink-0 text-green-400" /> A focused path forward</li>
               </ul>
             </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-4 shadow-[0_30px_60px_rgba(2,6,23,0.45)] backdrop-blur-sm">
-              <EnrollmentForm />
-            </div>
+            <ContactForm compact />
           </div>
         </div>
       </section>

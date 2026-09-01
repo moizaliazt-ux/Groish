@@ -12,28 +12,10 @@ const navItems = [
 ];
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const servicesMenuRef = useRef(null);
-
-  useEffect(() => {
-    let frame = 0;
-    const handleScroll = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        setIsScrolled(window.scrollY > 18);
-        frame = 0;
-      });
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, []);
-
   useEffect(() => {
     document.body.classList.toggle('mobile-menu-open', mobileMenuOpen);
     return () => document.body.classList.remove('mobile-menu-open');
@@ -61,9 +43,7 @@ const Header = () => {
     setMobileServicesOpen(false);
   };
 
-  const headerClasses = isScrolled
-    ? 'bg-white/85 border-slate-200 shadow-[0_18px_50px_rgba(15,23,42,0.08)]'
-    : 'bg-white/10 border-white/20 shadow-[0_14px_40px_rgba(2,6,23,0.18)]';
+  const headerClasses = 'bg-white/95 border-slate-200 shadow-[0_18px_50px_rgba(15,23,42,0.08)]';
 
   return (
     <header
@@ -90,8 +70,8 @@ const Header = () => {
               end={item.to === '/'}
               className={({ isActive }) => `group relative text-sm font-medium transition-colors ${
                 isActive
-                  ? isScrolled ? 'text-slate-950' : 'text-white'
-                  : isScrolled ? 'text-slate-600 hover:text-slate-950' : 'text-slate-200 hover:text-white'
+                  ? 'text-slate-950'
+                  : 'text-slate-600 hover:text-slate-950'
               }`}
             >
               {({ isActive }) => (
@@ -100,7 +80,7 @@ const Header = () => {
                   <span
                     className={`absolute -bottom-1 left-0 h-0.5 rounded-full transition-all duration-200 ${
                       isActive ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
-                    } ${isScrolled ? 'bg-slate-950' : 'bg-white'}`}
+                    } bg-slate-950`}
                   />
                 </span>
               )}
@@ -112,11 +92,11 @@ const Header = () => {
               aria-expanded={servicesMenuOpen}
               aria-haspopup="true"
               onClick={() => setServicesMenuOpen((prev) => !prev)}
-              className={`group relative inline-flex items-center gap-1 py-2 text-sm font-medium transition-colors ${isScrolled ? 'text-slate-600 hover:text-slate-950' : 'text-slate-200 hover:text-white'}`}
+              className="group relative inline-flex items-center gap-1 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-950"
             >
               Services
               <ChevronDown className={`h-4 w-4 transition-transform ${servicesMenuOpen ? 'rotate-180' : ''}`} />
-              <span className={`absolute -bottom-1 left-0 h-0.5 rounded-full transition-all duration-200 ${servicesMenuOpen ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'} ${isScrolled ? 'bg-slate-950' : 'bg-white'}`} />
+              <span className={`absolute -bottom-1 left-0 h-0.5 rounded-full bg-slate-950 transition-all duration-200 ${servicesMenuOpen ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'}`} />
             </button>
             <AnimatePresence>
               {servicesMenuOpen && (
@@ -143,9 +123,7 @@ const Header = () => {
           <Link
             to="/explore-our-companies"
             className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
-              isScrolled
-                ? 'bg-slate-950 text-white shadow-[0_18px_35px_rgba(15,23,42,0.18)] hover:bg-slate-800'
-                : 'bg-white/95 text-slate-950 shadow-[0_18px_35px_rgba(255,255,255,0.18)] hover:bg-slate-100'
+              'bg-slate-950 text-white shadow-[0_18px_35px_rgba(15,23,42,0.18)] hover:bg-slate-800'
             }`}
           >
             Explore Our Companies
@@ -158,7 +136,7 @@ const Header = () => {
           aria-label="Toggle menu"
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-navigation"
-          className={`relative z-50 rounded-lg p-2 md:hidden ${isScrolled ? 'text-slate-900' : 'text-white'}`}
+          className="relative z-50 rounded-lg p-2 text-slate-900 md:hidden"
           onClick={() => setMobileMenuOpen((prev) => !prev)}
         >
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

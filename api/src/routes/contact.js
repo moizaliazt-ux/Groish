@@ -61,7 +61,7 @@ router.post('/', contactRateLimit, async (req, res) => {
 			from: `"Groish" <${smtpUser}>`,
 			to: email,
 			subject: 'Thank you for contacting Groish!',
-			html: contactAutoReplyHtml({ name }),
+			html: contactAutoReplyHtml({ name, service: sanitized.service }),
 		});
 
 		logger.info(`Auto-reply sent to ${email}`);

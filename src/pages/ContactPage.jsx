@@ -1,72 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Clock3, Globe2, Mail, MapPin, Send, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Clock3, Globe2, Mail, MapPin, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
-import { servicesData } from '@/data/servicesData';
-import { servicePageConfig, siteUrl } from '@/data/servicePageConfig';
-
-const initialForm = { name: '', email: '', company: '', service: '', message: '' };
+import ContactForm from '@/components/ContactForm';
+import { siteUrl } from '@/data/servicePageConfig';
 
 const ContactPage = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState(initialForm);
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle');
-
-  const serviceOptions = useMemo(
-    () => Object.entries(servicesData).map(([slug, service]) => ({
-      slug,
-      label: servicePageConfig[slug]?.name || service.title
-    })),
-    []
-  );
-
-  const validate = () => {
-    const nextErrors = {};
-    if (!formData.name.trim()) nextErrors.name = 'Enter your full name.';
-    if (!/^\S+@\S+\.\S+$/.test(formData.email.trim())) nextErrors.email = 'Enter a valid email address.';
-    if (!formData.service) nextErrors.service = 'Select a service interest.';
-    if (formData.message.trim().length < 20) nextErrors.message = 'Add at least 20 characters about your project.';
-    return nextErrors;
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((current) => ({ ...current, [name]: value }));
-    setErrors((current) => ({ ...current, [name]: '' }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const nextErrors = validate();
-    if (Object.keys(nextErrors).length > 0) {
-      setErrors(nextErrors);
-      setStatus('idle');
-      return;
-    }
-
-    setStatus('loading');
-    fetch('/hcgi/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...formData, service: servicePageConfig[formData.service]?.name || formData.service }),
-    })
-      .then(async (response) => {
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(result.errors?.join(' ') || result.error || 'Unable to send your inquiry.');
-        setStatus('success');
-        setFormData(initialForm);
-        toast({ title: 'Message sent', description: 'Thanks for reaching out. We will be in touch soon.' });
-      })
-      .catch((error) => {
-        setStatus('idle');
-        toast({ title: 'Message not sent', description: error.message, variant: 'destructive' });
-      });
-  };
-
   return (
     <>
       <Helmet>
@@ -122,21 +62,7 @@ const ContactPage = () => {
             <div className="contact-overlap-card mt-8"><ShieldCheck className="h-6 w-6 shrink-0 text-cyan-700" /><div><h3>Why the time overlap matters?</h3><p>Our shifted operational hours allow the team to work with clients during their working hours, provide same-day follow-ups, respond quickly, and solve issues in real time.</p></div></div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.18 }} transition={{ duration: 0.65, delay: 0.08 }} className="contact-form-card">
-            <div className="flex items-start justify-between gap-5"><div><p className="contact-eyebrow">Start an inquiry</p><h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Send Us a Message</h2><p className="mt-3 leading-7 text-slate-600">Share enough context for us to understand where we can help.</p></div><span className="hidden rounded-2xl bg-cyan-50 p-3 text-cyan-700 sm:block"><Send className="h-5 w-5" /></span></div>
-            <form onSubmit={handleSubmit} noValidate className="mt-8 space-y-5">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <label className="contact-label">Full Name <span>*</span><input name="name" value={formData.name} onChange={handleChange} className={`mt-2 w-full rounded-xl border bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100 ${errors.name ? 'border-rose-400' : 'border-slate-200'}`} placeholder="Your full name" autoComplete="name" aria-invalid={Boolean(errors.name)} />{errors.name && <em>{errors.name}</em>}</label>
-                <label className="contact-label">Email Address <span>*</span><input name="email" value={formData.email} onChange={handleChange} className={`mt-2 w-full rounded-xl border bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100 ${errors.email ? 'border-rose-400' : 'border-slate-200'}`} placeholder="you@company.com" autoComplete="email" aria-invalid={Boolean(errors.email)} />{errors.email && <em>{errors.email}</em>}</label>
-              </div>
-              <label className="contact-label">Company Name<input name="company" value={formData.company} onChange={handleChange} className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100" placeholder="Your company" autoComplete="organization" /></label>
-              <label className="contact-label">Service Interest <span>*</span><select name="service" value={formData.service} onChange={handleChange} className={`mt-2 w-full rounded-xl border bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100 ${errors.service ? 'border-rose-400' : 'border-slate-200'}`} aria-invalid={Boolean(errors.service)}><option value="">Select a service</option>{serviceOptions.map((service) => <option key={service.slug} value={service.slug}>{service.label}</option>)}</select>{errors.service && <em>{errors.service}</em>}</label>
-              <label className="contact-label">Project Details <span>*</span><textarea name="message" value={formData.message} onChange={handleChange} className={`mt-2 min-h-36 w-full resize-y rounded-xl border bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100 ${errors.message ? 'border-rose-400' : 'border-slate-200'}`} placeholder="Tell us what you are trying to build, improve, or solve." aria-invalid={Boolean(errors.message)} />{errors.message && <em>{errors.message}</em>}</label>
-              <Button type="submit" size="lg" disabled={status === 'loading'} className="group w-full rounded-xl bg-slate-950 py-6 font-bold text-white hover:bg-cyan-700">{status === 'loading' ? 'Preparing your inquiry…' : 'Send Inquiry'}<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></Button>
-              <AnimatePresence>{status === 'success' && <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-2 text-sm font-semibold text-emerald-700"><CheckCircle2 className="h-4 w-4" /> Your email draft has been prepared.</motion.p>}</AnimatePresence>
-              <p className="text-xs leading-5 text-slate-500">Submitting opens your email client with the inquiry details addressed to info@groish.com.</p>
-            </form>
-          </motion.div>
+          <ContactForm />
         </div>
       </section>
 

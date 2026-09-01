@@ -79,7 +79,7 @@ const allowedCorsOrigins = (process.env.CORS_ORIGIN || '')
 	.map((origin) => origin.trim())
 	.filter(Boolean);
 
-app.use(cors({
+const corsOptions = {
 	origin: (origin, callback) => {
 		if (!origin || allowedCorsOrigins.includes(origin)) {
 			return callback(null, true);
@@ -87,7 +87,19 @@ app.use(cors({
 		return callback(new Error('Origin is not allowed by CORS'));
 	},
 	credentials: true,
-}));
+};
+
+app.use((req, res, next) => {
+	const origin = req.get('origin');
+	if (origin) {
+		try {
+			if (new URL(origin).host === req.get('host')) return next();
+		} catch {
+			return next(new Error('Origin is not allowed by CORS'));
+		}
+	}
+	return cors(corsOptions)(req, res, next);
+});
 app.use(morgan('combined'));
 app.use(globalRateLimit);
 app.use(express.json({

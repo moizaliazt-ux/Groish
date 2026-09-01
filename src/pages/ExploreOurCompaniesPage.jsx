@@ -60,7 +60,7 @@ const Reveal = ({ children, className = '', delay = 0, direction = 'up' }) => {
 const MotionLink = motion(Link);
 
 const ExploreOurCompaniesPage = () => (
-  <div className="groish-page-shell bg-slate-950 pt-20 text-white">
+  <div className="groish-page-shell bg-slate-100 pt-20 text-slate-950">
     <Helmet>
       <title>Explore Our Companies | GROISH</title>
       <meta name="description" content="Explore WebCore360 and TransMedEx, the specialized businesses GROISH is building across technology and healthcare operations." />
@@ -72,20 +72,20 @@ const ExploreOurCompaniesPage = () => (
     </Helmet>
 
     <main>
-      <section className="relative isolate overflow-hidden border-b border-white/10">
+      <section className="relative isolate overflow-hidden border-b border-slate-200 bg-slate-100">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_15%,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_15%_85%,rgba(59,130,246,0.16),transparent_34%)]" aria-hidden="true" />
-        <motion.div className="pointer-events-none absolute -right-20 top-16 h-64 w-64 rounded-full border border-cyan-200/15 bg-cyan-200/[0.04] blur-[1px]" animate={{ x: [0, 18, 0], y: [0, -12, 0] }} transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }} aria-hidden="true" />
-        <motion.div className="pointer-events-none absolute bottom-10 left-[12%] h-24 w-24 rounded-full border border-blue-300/15 bg-blue-300/[0.05]" animate={{ x: [0, -12, 0], y: [0, 10, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }} aria-hidden="true" />
+        <motion.div className="pointer-events-none absolute -right-20 top-16 h-64 w-64 rounded-full border border-cyan-300/30 bg-cyan-200/[0.12] blur-[1px]" animate={{ x: [0, 18, 0], y: [0, -12, 0] }} transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }} aria-hidden="true" />
+        <motion.div className="pointer-events-none absolute bottom-10 left-[12%] h-24 w-24 rounded-full border border-blue-300/30 bg-blue-300/[0.12]" animate={{ x: [0, -12, 0], y: [0, 10, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }} aria-hidden="true" />
         <div className="container relative mx-auto px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
           <motion.div className="max-w-4xl" initial="hidden" animate="show" variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.12 } } }}>
-            <motion.p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300" variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: revealTransition } }}>GROISH Business Ecosystem</motion.p>
+            <motion.p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-600" variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: revealTransition } }}>GROISH Business Ecosystem</motion.p>
             <motion.h1 className="mt-5 max-w-4xl text-4xl font-black leading-[0.96] tracking-[-0.07em] sm:text-6xl lg:text-7xl" variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { ...revealTransition, duration: 0.68 } } }}>Explore Our Companies</motion.h1>
-            <motion.p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8" variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: revealTransition } }}>Our growing business ecosystem consists of specialized companies created to provide focused solutions across different industries.</motion.p>
+            <motion.p className="mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8" variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: revealTransition } }}>Our growing business ecosystem consists of specialized companies created to provide focused solutions across different industries.</motion.p>
             <motion.div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4" variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: revealTransition } }}>
               <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-cyan-50">
                 <motion.a href="#companies" whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>Explore Our Companies <ArrowRight className="ml-2 h-4 w-4" /></motion.a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/25 bg-white/10 text-white hover:bg-white/20 hover:text-white">
+              <Button asChild size="lg" variant="outline" className="border-slate-300 bg-white/60 text-slate-700 hover:bg-white hover:text-slate-950">
                 <MotionLink to="/contact" whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>Talk to GROISH <ArrowUpRight className="ml-2 h-4 w-4" /></MotionLink>
               </Button>
             </motion.div>
