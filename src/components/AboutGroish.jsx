@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Building2, Globe2, Layers3 } from 'lucide-react';
-const officeTeam = '/optimized-images/IMG_6247.jpg';
-const officeWorkspace = '/optimized-images/IMG_6258.jpg';
+const officeTeam = '/optimized-images/IMG_6247.webp';
+const officeWorkspace = '/optimized-images/IMG_6258.webp';
 
 const focusAreas = ['Entrepreneurship', 'Technology', 'Business growth', 'Healthcare solutions', 'E-commerce', 'Education'];
 

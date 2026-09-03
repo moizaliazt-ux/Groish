@@ -3,10 +3,14 @@ import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform } fr
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-const teamLahore = '/optimized-images/IMG_6247.jpg';
-const officeWorkspace = '/optimized-images/IMG_6258.jpg';
-const officeMeet = '/optimized-images/IMG_6236.jpg';
-const teamDesk = '/optimized-images/IMG_6248.jpg';
+const teamLahore = '/optimized-images/IMG_6247.webp';
+const teamLahoreMobile = '/optimized-images/IMG_6247-mobile.webp';
+const officeWorkspace = '/optimized-images/IMG_6258.webp';
+const officeWorkspaceMobile = '/optimized-images/IMG_6258-mobile.webp';
+const officeMeet = '/optimized-images/IMG_6236.webp';
+const officeMeetMobile = '/optimized-images/IMG_6236-mobile.webp';
+const teamDesk = '/optimized-images/IMG_6248.webp';
+const teamDeskMobile = '/optimized-images/IMG_6248-mobile.webp';
 
 const slides = [
   {
@@ -14,6 +18,7 @@ const slides = [
     title: "Amazon FBA Wholesale",
     description: "Master the art of bulk buying and reselling. Start your profitable wholesale journey today.",
     image: teamLahore,
+    mobileImage: teamLahoreMobile,
     link: "/courses/amazon-fba-wholesale"
   },
   {
@@ -21,6 +26,7 @@ const slides = [
     title: "Amazon Private Label Bootcamp",
     description: "Build your own brand from scratch. Create unique products and dominate your niche.",
     image: officeWorkspace,
+    mobileImage: officeWorkspaceMobile,
     link: "/courses/amazon-private-label"
   },
   {
@@ -28,6 +34,7 @@ const slides = [
     title: "Amazon PPC Mastery",
     description: "Drive targeted traffic and scale sales through advanced Amazon sponsored ads strategies.",
     image: officeMeet,
+    mobileImage: officeMeetMobile,
     link: "/courses/amazon-ppc"
   },
   {
@@ -35,6 +42,7 @@ const slides = [
     title: "Complete E-Commerce Start-Up Guide",
     description: "End-to-end guidance for setting up your complete online business infrastructure.",
     image: teamDesk,
+    mobileImage: teamDeskMobile,
     link: "/courses/ecommerce-startup"
   }
 ];
@@ -106,17 +114,23 @@ const HeroSlider = () => {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="absolute inset-0"
         >
-          <motion.img
-            src={slides[current].image}
-            alt={slides[current].title}
-            loading={current === 0 ? 'eager' : 'lazy'}
-            fetchPriority={current === 0 ? 'high' : 'low'}
-            decoding="async"
-            sizes="100vw"
-            className="h-full w-full object-cover object-center opacity-45 saturate-110 brightness-75"
-            animate={reduceMotion || isMobile ? { scale: 1.04, y: 0 } : { scale: 1.08, y: [0, -8, 0] }}
-            transition={reduceMotion || isMobile ? { duration: 0 } : { duration: 12, ease: 'easeInOut', repeat: Infinity }}
-          />
+          <picture>
+            {slides[current].mobileImage && (
+              <source media="(max-width: 768px)" srcSet={slides[current].mobileImage} type="image/webp" />
+            )}
+            <source srcSet={slides[current].image} type="image/webp" />
+            <motion.img
+              src={slides[current].image}
+              alt={slides[current].title}
+              loading={current === 0 ? 'eager' : 'lazy'}
+              fetchPriority={current === 0 ? 'high' : 'low'}
+              decoding="async"
+              sizes="100vw"
+              className="h-full w-full object-cover object-center opacity-45 saturate-110 brightness-75"
+              animate={reduceMotion || isMobile ? { scale: 1.04, y: 0 } : { scale: 1.08, y: [0, -8, 0] }}
+              transition={reduceMotion || isMobile ? { duration: 0 } : { duration: 12, ease: 'easeInOut', repeat: Infinity }}
+            />
+          </picture>
           <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(2,6,23,0.95),rgba(2,6,23,0.72)_38%,rgba(2,6,23,0.42))]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.2),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.14),transparent_26%)]" />
 

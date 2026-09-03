@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, MapPin, X } from 'lucide-react';
-const lahore01 = '/optimized-images/IMG_6236.jpg';
-const lahore02 = '/optimized-images/IMG_6238.jpg';
-const lahore03 = '/optimized-images/IMG_6240.jpg';
-const lahore04 = '/optimized-images/IMG_6247.jpg';
-const lahore05 = '/optimized-images/IMG_6248.jpg';
-const lahore06 = '/optimized-images/IMG_6258.jpg';
-const lahore07 = '/optimized-images/IMG_6259.jpg';
-const lahore08 = '/optimized-images/IMG_6262.jpg';
-const usa01 = '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg';
+const lahore01 = '/optimized-images/IMG_6236.webp';
+const lahore02 = '/optimized-images/IMG_6238.webp';
+const lahore03 = '/optimized-images/IMG_6240.webp';
+const lahore04 = '/optimized-images/IMG_6247.webp';
+const lahore05 = '/optimized-images/IMG_6248.webp';
+const lahore06 = '/optimized-images/IMG_6258.webp';
+const lahore07 = '/optimized-images/IMG_6259.webp';
+const lahore08 = '/optimized-images/IMG_6262.webp';
+const usa01 = '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.webp';
 const usa02 = '/company-images/image.png';
 
 const galleryImages = [

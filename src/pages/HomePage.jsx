@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import HeroSlider from '@/components/HeroSlider';
-import ContactForm from '@/components/ContactForm';
-import GroishEcommerce from '@/components/GroishEcommerce';
 import WhatWeDo from '@/components/WhatWeDo';
-import InsideGroish from '@/components/InsideGroish';
-import GlobalPresence from '@/components/GlobalPresence';
-import AboutGroish from '@/components/AboutGroish';
+import GroishEcommerce from '@/components/GroishEcommerce';
 import EcosystemMarquee from '@/components/EcosystemMarquee';
-const lahoreOffice = '/optimized-images/IMG_6247.jpg';
-const officeWorkspace = '/optimized-images/IMG_6258.jpg';
-const officeInterior = '/optimized-images/IMG_6262.jpg';
-const usaOffice = '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg';
+
+const InsideGroish = lazy(() => import('@/components/InsideGroish'));
+const GlobalPresence = lazy(() => import('@/components/GlobalPresence'));
+const AboutGroish = lazy(() => import('@/components/AboutGroish'));
+const ContactForm = lazy(() => import('@/components/ContactForm'));
+
+const lahoreOffice = '/optimized-images/IMG_6247.webp';
+const officeWorkspace = '/optimized-images/IMG_6258.webp';
+const officeInterior = '/optimized-images/IMG_6262.webp';
+const usaOffice = '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.webp';
 import { ArrowUpRight, CheckCircle2, Code2, Globe2, GraduationCap, Headphones, Layers3, LineChart } from 'lucide-react';
 
 const HomePage = () => {
@@ -159,13 +161,19 @@ const HomePage = () => {
       <div className="groish-section-frame">
         <WhatWeDo />
 
-        <AboutGroish />
+        <Suspense fallback={<div className="min-h-[250px]" />}>
+          <AboutGroish />
+        </Suspense>
 
         <GroishEcommerce />
 
-        <InsideGroish />
+        <Suspense fallback={<div className="min-h-[350px]" />}>
+          <InsideGroish />
+        </Suspense>
 
-        <GlobalPresence />
+        <Suspense fallback={<div className="min-h-[250px]" />}>
+          <GlobalPresence />
+        </Suspense>
       </div>
 
       <section className="groish-light-band bg-slate-50 py-20 sm:py-24">
@@ -294,7 +302,9 @@ const HomePage = () => {
                 <li className="flex items-center gap-3 text-slate-200"><CheckCircle2 className="h-5 w-5 shrink-0 text-green-400" /> A focused path forward</li>
               </ul>
             </div>
-            <ContactForm compact />
+            <Suspense fallback={<div className="min-h-[300px] animate-pulse rounded-2xl bg-slate-800/40" />}>
+              <ContactForm compact />
+            </Suspense>
           </div>
         </div>
       </section>

@@ -7,10 +7,10 @@ import {
   Globe2, Layers3, LineChart, Network, Palette, Rocket, ShieldCheck, ShoppingBag,
   Sparkles, Target, TrendingUp, Workflow,
 } from 'lucide-react';
-const officeMeet = '/optimized-images/IMG_6236.jpg';
-const officeTeam = '/optimized-images/IMG_6247.jpg';
-const officeWorkspace = '/optimized-images/IMG_6258.jpg';
-const officeInterior = '/optimized-images/IMG_6262.jpg';
+const officeMeet = '/optimized-images/IMG_6236.webp';
+const officeTeam = '/optimized-images/IMG_6247.webp';
+const officeWorkspace = '/optimized-images/IMG_6258.webp';
+const officeInterior = '/optimized-images/IMG_6262.webp';
 
 const businesses = [
   {

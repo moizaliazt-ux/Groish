@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, MapPin, Plus } from 'lucide-react';
-const lahoreOffice = '/optimized-images/IMG_6247.jpg';
-const usaOfficeInterior = '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg';
+const lahoreOffice = '/optimized-images/IMG_6247.webp';
+const usaOfficeInterior = '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.webp';
 
 const locations = [
 	{ country: 'Pakistan', city: 'LAHORE, PAKISTAN', note: 'GROISH team presence', accent: 'bg-blue-500' },

@@ -12,7 +12,7 @@ const companies = [
     description: 'Digital products, websites, software, search, and growth systems for organizations ready to move forward.',
     icon: Code2,
     accent: 'from-sky-500 to-cyan-400',
-    image: '/optimized-images/IMG_6247.jpg',
+    image: '/optimized-images/IMG_6247.webp',
     alt: 'Modern workspace representing WebCore360 digital solutions and business growth operations',
     logo: 'W360',
     href: 'https://webcore360.com/',
@@ -23,7 +23,7 @@ const companies = [
     description: 'TransMedEx is a healthcare revenue cycle management and medical billing solutions company built around accuracy, consistency, and dependable operations.',
     icon: HeartPulse,
     accent: 'from-emerald-500 to-teal-400',
-    image: '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg',
+    image: '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.webp',
     alt: 'Professional office environment representing TransMedEx healthcare revenue cycle operations',
     logo: 'TMX',
     href: 'https://www.transmedex.org/',
@@ -96,7 +96,7 @@ const ExploreOurCompaniesPage = () => (
       <motion.section aria-labelledby="transmedex-feature-heading" className="overflow-hidden border-b border-slate-200 bg-slate-100 text-slate-950" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.08 }} transition={revealTransition}>
         <div className="container mx-auto grid max-w-7xl items-stretch lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div className="group relative min-h-[320px] overflow-hidden sm:min-h-[400px] lg:min-h-[440px]">
-            <motion.img src="/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg" alt="Healthcare operations team environment representing TransMedEx" loading="eager" decoding="async" sizes="(max-width: 1024px) 100vw, 45vw" className="absolute inset-0 h-full w-full object-cover" initial={{ scale: 1.02 }} whileHover={{ scale: 1.06 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} />
+            <motion.img src="/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.webp" alt="Healthcare operations team environment representing TransMedEx" loading="eager" decoding="async" sizes="(max-width: 1024px) 100vw, 45vw" className="absolute inset-0 h-full w-full object-cover" initial={{ scale: 1.02 }} whileHover={{ scale: 1.06 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} />
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/75 via-teal-900/25 to-transparent" />
             <motion.div className="absolute left-0 right-0 top-1/2 h-px origin-left bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" initial={{ scaleX: 0, opacity: 0 }} whileInView={{ scaleX: 1, opacity: 1 }} viewport={{ once: true, amount: 0.4 }} transition={{ ...revealTransition, delay: 0.2 }} aria-hidden="true" />
             <div className="absolute bottom-6 left-6 flex items-center gap-3 rounded-2xl border border-white/25 bg-slate-950/55 px-4 py-3 text-white backdrop-blur-md sm:bottom-8 sm:left-8">
@@ -132,7 +132,7 @@ const ExploreOurCompaniesPage = () => (
             </Reveal>
           </div>
           <div className="group relative min-h-[320px] overflow-hidden sm:min-h-[400px] lg:min-h-[440px]">
-            <motion.img src="/optimized-images/IMG_6247.jpg" alt="Modern digital workspace representing WebCore360 solutions and business growth" loading="lazy" decoding="async" sizes="(max-width: 1024px) 100vw, 45vw" className="absolute inset-0 h-full w-full object-cover" initial={{ scale: 1.02 }} whileHover={{ scale: 1.06 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} />
+            <motion.img src="/optimized-images/IMG_6247.webp" alt="Modern digital workspace representing WebCore360 solutions and business growth" loading="lazy" decoding="async" sizes="(max-width: 1024px) 100vw, 45vw" className="absolute inset-0 h-full w-full object-cover" initial={{ scale: 1.02 }} whileHover={{ scale: 1.06 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} />
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/45 via-blue-950/30 to-slate-950/80" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(125,211,252,0.35),transparent_28%)]" />
             <motion.div className="absolute left-0 right-0 top-1/2 h-px origin-right bg-gradient-to-r from-transparent via-cyan-200/60 to-transparent" initial={{ scaleX: 0, opacity: 0 }} whileInView={{ scaleX: 1, opacity: 1 }} viewport={{ once: true, amount: 0.4 }} transition={{ ...revealTransition, delay: 0.24 }} aria-hidden="true" />

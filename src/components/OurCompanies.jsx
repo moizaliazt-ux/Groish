@@ -5,11 +5,11 @@ import { ArrowRight, ArrowUpRight, BarChart3, Blocks, Building2, Code2, HeartPul
 import { Button } from '@/components/ui/button';
 
 const assets = {
-  hero: '/optimized-images/IMG_6236.jpg',
-  webcore: '/optimized-images/IMG_6247.jpg',
-  transmedex: '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.jpg',
-  ecommerce: '/optimized-images/IMG_6262.jpg',
-  operations: '/optimized-images/IMG_6258.jpg',
+  hero: '/optimized-images/IMG_6236.webp',
+  webcore: '/optimized-images/IMG_6247.webp',
+  transmedex: '/optimized-images/WhatsApp Image 2026-08-06 at 00.55.00.webp',
+  ecommerce: '/optimized-images/IMG_6262.webp',
+  operations: '/optimized-images/IMG_6258.webp',
 };
 
 const companies = [

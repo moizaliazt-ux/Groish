@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence, motion, MotionConfig, useScroll } from 'framer-motion';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import FinalCTA from '@/components/FinalCTA';
 import ScrollToTop from '@/components/ScrollToTop';
+
+const FinalCTA = lazy(() => import('@/components/FinalCTA'));
+const Footer = lazy(() => import('@/components/Footer'));
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const AmazonFBAWholesalePage = lazy(() => import('@/pages/AmazonFBAWholesalePage'));
@@ -79,8 +80,10 @@ function App() {
             <AnimatedRoutes />
           </Suspense>
         </main>
-        <FinalCTA />
-        <Footer />
+        <Suspense fallback={null}>
+          <FinalCTA />
+          <Footer />
+        </Suspense>
         <Toaster />
         </div>
       </MotionConfig>
