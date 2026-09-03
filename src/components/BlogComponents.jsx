@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 
 export const BlogCard = ({ post }) => (
   <Link to={`/blog/${post.slug}`} className="group bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg transition-all flex flex-col h-full">
-    <div className="relative h-48 overflow-hidden">
-      <img src={post.featuredImage} alt={post.title} loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 50vw" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+    <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+      <img src={post.featuredImage} alt={post.title} loading="lazy" decoding="async" width="400" height="192" sizes="(max-width: 768px) 100vw, 50vw" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
       <span className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">{post.category}</span>
     </div>
     <div className="p-6 flex flex-col flex-grow">
