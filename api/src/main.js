@@ -116,9 +116,11 @@ app.get('/health', (req, res) => {
 	res.json({ status: 'ok' });
 });
 
-app.get('/', (req, res) => {
-	res.send('Groish API is running');
-});
+if (!fs.existsSync(distPath)) {
+	app.get('/', (req, res) => {
+		res.send('Groish API is running');
+	});
+}
 
 // Dev proxy to Vite dev server on port 3000 if it's running
 app.use(async (req, res, next) => {
