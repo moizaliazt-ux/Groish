@@ -293,7 +293,7 @@ export default defineConfig({
 	server: {
 		cors: { origin: AllowedEditorOrigins },
 		proxy: {
-			'/hcgi/api': 'http://localhost:3001',
+			'/hcgi/api': 'http://127.0.0.1:3001',
 		},
 		headers: {
 			'Cross-Origin-Embedder-Policy': 'credentialless',
