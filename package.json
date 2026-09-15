@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
+  "main": "apps/api/src/main.js",
   "scripts": {
     "dev": "cd apps/web && npx vite --host :: --port 3000",
     "build": "cd apps/web && npx vite build",
