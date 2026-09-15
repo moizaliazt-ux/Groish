@@ -3,11 +3,11 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "main": "apps/api/src/main.js",
+  "main": "server.js",
   "scripts": {
     "dev": "cd apps/web && npx vite --host :: --port 3000",
     "build": "cd apps/web && npx vite build",
-    "start": "node apps/api/src/main.js",
+    "start": "node server.js",
     "preview": "cd apps/web && npx vite preview --host :: --port 3000",
     "lint": "eslint . --quiet"
   },
