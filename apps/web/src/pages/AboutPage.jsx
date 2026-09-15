@@ -24,6 +24,7 @@ const businesses = [
     href: '/services',
     linkLabel: 'Explore technology services',
   },
+
   {
     name: 'TransMedEx',
     eyebrow: 'Healthcare business support',
@@ -108,7 +109,15 @@ const AboutPage = () => {
       <main className="about-page">
         <section ref={heroRef} className="about-hero relative isolate overflow-hidden bg-slate-950 text-white">
           <motion.div className="about-hero__image absolute inset-0" style={{ y: heroImageY }}>
-            <img src={officeMeet} alt="GROISH team workspace supporting a connected business ecosystem" className="h-full w-full object-cover" />
+            <img 
+              src={officeMeet} 
+              alt="GROISH team workspace supporting a connected business ecosystem" 
+              className="h-full w-full object-cover" 
+              loading="eager" 
+              fetchPriority="high" 
+              decoding="async"
+              sizes="100vw"
+            />
           </motion.div>
           <div className="about-hero__overlay absolute inset-0" />
           <div className="about-hero__grid absolute inset-0" aria-hidden="true" />
@@ -159,7 +168,14 @@ const AboutPage = () => {
                   <Reveal key={business.name} delay={index * 0.08} className="h-full">
                     <article className="about-business-card group h-full overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_20px_70px_rgba(15,23,42,0.07)] transition-all duration-500 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-[0_30px_90px_rgba(15,23,42,0.14)]">
                       <div className="about-business-card__image relative h-64 overflow-hidden">
-                        <img src={business.image} alt={business.alt} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                        <img 
+                          src={business.image} 
+                          alt={business.alt} 
+                          className="h-full w-full object-cover transition duration-700 group-hover:scale-105" 
+                          loading="lazy" 
+                          decoding="async" 
+                          sizes="(max-width: 1024px) 100vw, 33vw"
+                        />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/10 to-transparent" />
                         <div className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/25 bg-white/15 text-white backdrop-blur"><Icon className="h-5 w-5" /></div>
                         <p className="absolute bottom-5 left-5 right-5 text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">{business.eyebrow}</p>
@@ -221,7 +237,16 @@ const AboutPage = () => {
               </div>
             </Reveal>
             <Reveal delay={0.08} className="relative">
-              <div className="about-approach__image overflow-hidden rounded-[2rem] border-8 border-white shadow-[0_30px_90px_rgba(15,23,42,0.15)]"><img src={officeInterior} alt="GROISH office interior representing structured operations and collaboration" className="h-[28rem] w-full object-cover" /></div>
+              <div className="about-approach__image overflow-hidden rounded-[2rem] border-8 border-white shadow-[0_30px_90px_rgba(15,23,42,0.15)]">
+                <img 
+                  src={officeInterior} 
+                  alt="GROISH office interior representing structured operations and collaboration" 
+                  className="h-[28rem] w-full object-cover" 
+                  loading="lazy" 
+                  decoding="async" 
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
               <div className="absolute -bottom-7 -left-4 rounded-2xl border border-cyan-100 bg-white p-5 shadow-[0_20px_50px_rgba(15,23,42,0.12)] sm:-left-8"><Workflow className="h-6 w-6 text-cyan-600" /><p className="mt-3 text-sm font-black text-slate-950">Built for momentum</p><p className="mt-1 text-xs text-slate-500">Clear direction. Practical systems.</p></div>
             </Reveal>
           </div>

@@ -74,8 +74,8 @@ const ExploreOurCompaniesPage = () => (
     <main>
       <section className="relative isolate overflow-hidden border-b border-slate-200 bg-slate-100">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_15%,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_15%_85%,rgba(59,130,246,0.16),transparent_34%)]" aria-hidden="true" />
-        <motion.div className="pointer-events-none absolute -right-20 top-16 h-64 w-64 rounded-full border border-cyan-300/30 bg-cyan-200/[0.12] blur-[1px]" animate={{ x: [0, 18, 0], y: [0, -12, 0] }} transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }} aria-hidden="true" />
-        <motion.div className="pointer-events-none absolute bottom-10 left-[12%] h-24 w-24 rounded-full border border-blue-300/30 bg-blue-300/[0.12]" animate={{ x: [0, -12, 0], y: [0, 10, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }} aria-hidden="true" />
+        <div className="pointer-events-none absolute -right-20 top-16 h-64 w-64 rounded-full border border-cyan-300/30 bg-cyan-200/[0.12] blur-[1px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute bottom-10 left-[12%] h-24 w-24 rounded-full border border-blue-300/30 bg-blue-300/[0.12]" aria-hidden="true" />
         <div className="container relative mx-auto px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
           <motion.div className="max-w-4xl" initial="hidden" animate="show" variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.12 } } }}>
             <motion.p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-600" variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: revealTransition } }}>GROISH Business Ecosystem</motion.p>

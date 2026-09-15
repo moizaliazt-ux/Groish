@@ -15,10 +15,8 @@ const WhatWeDo = () => {
 	return (
 		<section className="relative overflow-hidden bg-white py-20 sm:py-24">
 			<div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.12),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(20,184,166,0.1),transparent_30%)]" />
-			<motion.div
-				animate={{ x: ['-8%', '8%', '-8%'], opacity: [0.2, 0.4, 0.2] }}
-				transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-				className="absolute left-[-10%] top-1/2 h-px w-[120%] -translate-y-1/2 bg-gradient-to-r from-transparent via-blue-400/70 to-transparent shadow-[0_0_30px_rgba(96,165,250,0.3)]"
+			<div
+				className="absolute left-[-10%] top-1/2 h-px w-[120%] -translate-y-1/2 bg-gradient-to-r from-transparent via-blue-400/70 to-transparent opacity-30 shadow-[0_0_30px_rgba(96,165,250,0.3)]"
 			/>
 			<div className="container relative mx-auto px-4">
 				<motion.div

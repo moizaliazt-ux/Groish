@@ -662,8 +662,7 @@
   }
 
   .groish-page-shell {
-    background-size: 140% 140%, 100% 100%;
-    animation: groish-gradient-shift 22s ease-in-out infinite alternate;
+    background-size: 100% 100%;
   }
 
   @supports (animation-timeline: view()) {
@@ -964,7 +963,8 @@
       radial-gradient(circle at 72% 20%, rgba(96, 165, 250, 0.16), transparent 22%),
       radial-gradient(circle at 48% 68%, rgba(34, 211, 238, 0.12), transparent 24%),
       linear-gradient(120deg, rgba(15, 23, 42, 0), rgba(37, 99, 235, 0.09), rgba(14, 165, 233, 0), rgba(14, 116, 144, 0.06), rgba(15, 23, 42, 0));
-    animation: groish-ambient-drift 28s ease-in-out infinite alternate;
+    transform: translateZ(0);
+    will-change: auto;
   }
 
   .groish-page-shell::before {
@@ -982,7 +982,7 @@
     background-size: 72px 72px, 72px 72px, auto, auto;
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.78), transparent 80%);
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.78), transparent 80%);
-    animation: groish-grid-drift 26s linear infinite;
+    transform: translateZ(0);
   }
 
   .groish-page-shell::after {
@@ -997,8 +997,8 @@
     pointer-events: none;
     background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.12), transparent);
     box-shadow: 0 320px 0 rgba(37, 99, 235, 0.05), 0 680px 0 rgba(13, 148, 136, 0.05);
-    transform: rotate(-8deg);
-    animation: groish-light-sweep 22s ease-in-out infinite alternate;
+    transform: rotate(-8deg) translateZ(0);
+    opacity: 0.78;
   }
 
   .groish-section-frame {

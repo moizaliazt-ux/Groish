@@ -254,14 +254,10 @@ const HomePage = () => {
         className="relative overflow-hidden border-y border-slate-200/80 bg-[radial-gradient(circle_at_top,rgba(96,165,250,0.2),transparent_38%),linear-gradient(180deg,#f8fbff_0%,#eef6ff_45%,#f8fafc_100%)] py-20 sm:py-24"
       >
         <div className="pointer-events-none absolute inset-0">
-          <motion.div
-            animate={{ x: ['-10%', '12%', '-10%'], opacity: [0.18, 0.35, 0.18] }}
-            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute left-[-10%] top-1/2 h-px w-[120%] -translate-y-1/2 bg-gradient-to-r from-transparent via-blue-300/70 to-transparent shadow-[0_0_44px_rgba(96,165,250,0.45)]"
+          <div
+            className="absolute left-[-10%] top-1/2 h-px w-[120%] -translate-y-1/2 bg-gradient-to-r from-transparent via-blue-300/70 to-transparent opacity-25 shadow-[0_0_44px_rgba(96,165,250,0.45)]"
           />
-          <motion.div
-            animate={{ y: [0, -18, 0] }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          <div
             className="absolute right-[12%] top-8 h-32 w-32 rounded-full bg-cyan-200/20 blur-3xl"
           />
         </div>

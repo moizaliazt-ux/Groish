@@ -81,7 +81,7 @@ const OurCompanies = () => {
   return (
     <main id="inside-groish" className="overflow-hidden bg-slate-950 text-white">
       <section aria-labelledby="companies-hero-heading" className="relative isolate min-h-[660px] overflow-hidden">
-        <img src={assets.hero} alt="GROISH workspace representing a diversified business ecosystem" className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" decoding="async" sizes="100vw" />
+        <img src={assets.hero} alt="GROISH workspace representing a diversified business ecosystem" className="absolute inset-0 h-full w-full object-cover" loading="eager" fetchPriority="high" decoding="async" sizes="100vw" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,0.96),rgba(2,6,23,0.72)_48%,rgba(2,6,23,0.3)),linear-gradient(0deg,#020617,transparent_65%)]" />
         <div className="absolute right-[12%] top-28 h-40 w-40 rounded-full border border-cyan-200/20 bg-cyan-200/10 blur-[1px]" aria-hidden="true" />
         <div className="container relative mx-auto flex min-h-[660px] items-end px-4 pb-20 pt-32 sm:px-6 sm:pb-28 lg:px-8">

@@ -93,17 +93,14 @@ const HeroSlider = () => {
 
   return (
     <div ref={heroRef} className="relative h-[560px] overflow-hidden bg-slate-950 sm:h-[620px] lg:h-[720px]">
-      <motion.div
+      <div
         aria-hidden="true"
-        className="absolute inset-0"
-        style={{ y: heroBgY, x: heroGlowX }}
-        animate={reduceMotion || isMobile ? { opacity: 0.94 } : { opacity: [0.92, 0.98, 0.92] }}
-        transition={reduceMotion || isMobile ? { duration: 0 } : { duration: 18, ease: 'easeInOut', repeat: Infinity }}
+        className="absolute inset-0 pointer-events-none"
       >
         <div className="absolute -left-16 top-16 h-72 w-72 rounded-full bg-cyan-400/15 blur-3xl" />
         <div className="absolute right-0 top-20 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
         <div className="absolute bottom-8 left-1/3 h-64 w-64 rounded-full bg-sky-300/10 blur-3xl" />
-      </motion.div>
+      </div>
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -159,8 +156,8 @@ const HeroSlider = () => {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="max-w-5xl px-5 text-center text-white sm:px-8">
               <motion.div
-                initial={{ opacity: 0, y: 18, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.16, duration: 0.7, ease: 'easeOut' }}
                 className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-slate-200 backdrop-blur-sm"
               >
@@ -168,16 +165,16 @@ const HeroSlider = () => {
                 GROISH Global learning
               </motion.div>
               <motion.h1
-                initial={{ opacity: 0, y: 28, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.22, duration: 0.8, ease: 'easeOut' }}
                 className="mb-5 text-3xl font-black tracking-[-0.07em] text-white sm:text-6xl lg:text-7xl"
               >
                 {slides[current].title}
               </motion.h1>
               <motion.p
-                initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.38, duration: 0.8, ease: 'easeOut' }}
                 className="mx-auto mb-9 max-w-2xl text-base leading-7 text-slate-200 sm:text-xl"
               >
