@@ -16,7 +16,12 @@ import { verifyMailer } from './utils/mailer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const distPath = path.resolve(__dirname, '../../web/dist');
+const possibleDistPaths = [
+	path.resolve(__dirname, '../../web/dist'),
+	path.resolve(process.cwd(), 'apps/web/dist'),
+	path.resolve(process.cwd(), 'dist'),
+];
+const distPath = possibleDistPaths.find((p) => fs.existsSync(p)) || possibleDistPaths[0];
 
 const app = express();
 
@@ -47,7 +52,7 @@ process.on('SIGTERM', async () => {
 // Configure Helmet with a conservative Content Security Policy and other security headers
 const cspDirectives = {
 	defaultSrc: ["'self'"],
-	scriptSrc: ["'self'"],
+	scriptSrc: ["'self'", "'unsafe-inline'"],
 	styleSrc: ["'self'", "'unsafe-inline'"],
 	imgSrc: ["'self'", 'data:', 'https://images.unsplash.com', 'https://horizons-cdn.hostinger.com', 'https://images.dmca.com', 'https://via.placeholder.com'],
 	connectSrc: ["'self'", 'http://localhost:3000', 'ws://localhost:3000'],
@@ -116,7 +121,22 @@ app.get('/health', (req, res) => {
 	res.json({ status: 'ok' });
 });
 
-if (!fs.existsSync(distPath)) {
+// Serve static assets from dist folder if it exists
+if (fs.existsSync(distPath)) {
+	logger.info(`Serving static files from ${distPath}`);
+	app.use(express.static(distPath));
+
+	// Universal SPA fallback for non-API routes (Express 5 compatible)
+	app.use((req, res, next) => {
+		if (req.method === 'GET' && !req.path.startsWith('/hcgi/api') && !req.path.startsWith('/health')) {
+			const indexPath = path.join(distPath, 'index.html');
+			if (fs.existsSync(indexPath)) {
+				return res.sendFile(indexPath);
+			}
+		}
+		next();
+	});
+} else {
 	app.get('/', (req, res) => {
 		res.send('Groish API is running');
 	});
@@ -124,7 +144,7 @@ if (!fs.existsSync(distPath)) {
 
 // Dev proxy to Vite dev server on port 3000 if it's running
 app.use(async (req, res, next) => {
-	if (req.path.startsWith('/hcgi/api')) {
+	if (req.path.startsWith('/hcgi/api') || req.path.startsWith('/health')) {
 		return next();
 	}
 	try {
@@ -153,29 +173,13 @@ app.use(async (req, res, next) => {
 	}
 });
 
-// Serve static assets from dist folder if it exists
-if (fs.existsSync(distPath)) {
-	logger.info(`Serving static files from ${distPath}`);
-	app.use(express.static(distPath));
-}
-
-// Wildcard fallback for React routing (only if dist exists)
-if (fs.existsSync(distPath)) {
-	app.get('/{*splat}', (req, res, next) => {
-		if (req.method === 'GET' && req.accepts('html')) {
-			return res.sendFile(path.join(distPath, 'index.html'));
-		}
-		next();
-	});
-}
-
 app.use(errorMiddleware);
 
 app.use((req, res) => {
 	res.status(404).json({ error: 'Route not found' });
 });
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
 	logger.info(`🚀 API Server running on http://localhost:${port}`);
