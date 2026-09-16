@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Shield, Clock, Users, TrendingUp, HeartHandshake as Handshake, MonitorCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import AdSenseAd from '@/components/AdSenseAd';
 
 const WhyChoosePage = () => {
   const differentiators = [
@@ -79,6 +80,12 @@ const WhyChoosePage = () => {
           </div>
         </div>
       </section>
+
+      <div className="border-y border-slate-200 bg-slate-50 py-8">
+        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <AdSenseAd variant="banner" format="auto" />
+        </div>
+      </div>
 
       <section className="py-20 bg-blue-600 text-white">
         <div className="container mx-auto px-4 text-center">

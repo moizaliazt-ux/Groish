@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AdSenseAd from '@/components/AdSenseAd';
 import { servicesData } from '@/data/servicesData';
 import { servicePageConfig, siteUrl } from '@/data/servicePageConfig';
 
@@ -45,8 +46,8 @@ const ServicesPage = () => {
           
           <div className="grid grid-cols-1 gap-8">
             {services.map((service, index) => (
+              <React.Fragment key={service.id}>
               <motion.div
-                key={service.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -90,6 +91,12 @@ const ServicesPage = () => {
                   </div>
                 </div>
               </motion.div>
+              {index === 2 && (
+                <div key="services-mid-ad" className="my-2">
+                  <AdSenseAd variant="card" format="auto" />
+                </div>
+              )}
+              </React.Fragment>
             ))}
           </div>
 

@@ -49,13 +49,65 @@ process.on('SIGTERM', async () => {
 	process.exit();
 });
 
-// Configure Helmet with a conservative Content Security Policy and other security headers
+// Configure Helmet with a Content Security Policy supporting Google AdSense and other security headers
 const cspDirectives = {
 	defaultSrc: ["'self'"],
-	scriptSrc: ["'self'", "'unsafe-inline'"],
-	styleSrc: ["'self'", "'unsafe-inline'"],
-	imgSrc: ["'self'", 'data:', 'https://images.unsplash.com', 'https://horizons-cdn.hostinger.com', 'https://images.dmca.com', 'https://via.placeholder.com'],
-	connectSrc: ["'self'", 'http://localhost:3000', 'ws://localhost:3000'],
+	scriptSrc: [
+		"'self'",
+		"'unsafe-inline'",
+		"'unsafe-eval'",
+		'https://pagead2.googlesyndication.com',
+		'https://partner.googleadservices.com',
+		'https://tpc.googlesyndication.com',
+		'https://googleads.g.doubleclick.net',
+		'https://adservice.google.com',
+		'https://www.googletagservices.com',
+	],
+	styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+	imgSrc: [
+		"'self'",
+		'data:',
+		'blob:',
+		'https://images.unsplash.com',
+		'https://horizons-cdn.hostinger.com',
+		'https://images.dmca.com',
+		'https://via.placeholder.com',
+		'https://pagead2.googlesyndication.com',
+		'https://googleads.g.doubleclick.net',
+		'https://*.google.com',
+		'https://*.doubleclick.net',
+		'https://*.googlesyndication.com',
+	],
+	connectSrc: [
+		"'self'",
+		'http://localhost:3000',
+		'ws://localhost:3000',
+		'https://pagead2.googlesyndication.com',
+		'https://googleads.g.doubleclick.net',
+		'https://adservice.google.com',
+		'https://*.google.com',
+		'https://*.doubleclick.net',
+		'https://*.googlesyndication.com',
+	],
+	frameSrc: [
+		"'self'",
+		'https://googleads.g.doubleclick.net',
+		'https://pagead2.googlesyndication.com',
+		'https://tpc.googlesyndication.com',
+		'https://www.google.com',
+		'https://*.google.com',
+		'https://*.doubleclick.net',
+		'https://*.googlesyndication.com',
+	],
+	childSrc: [
+		"'self'",
+		'blob:',
+		'https://googleads.g.doubleclick.net',
+		'https://pagead2.googlesyndication.com',
+		'https://tpc.googlesyndication.com',
+		'https://www.google.com',
+	],
+	fontSrc: ["'self'", 'data:', 'https://fonts.gstatic.com'],
 	frameAncestors: ["'none'"],
 	baseUri: ["'self'"],
 	formAction: ["'self'"],
@@ -67,8 +119,8 @@ app.use(helmet({
 	contentSecurityPolicy: {
 		directives: cspDirectives,
 	},
-	crossOriginOpenerPolicy: { policy: 'same-origin' },
-	crossOriginResourcePolicy: { policy: 'same-site' },
+	crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
+	crossOriginResourcePolicy: { policy: 'cross-origin' },
 }));
 
 // HSTS in production
@@ -116,6 +168,10 @@ app.use(express.urlencoded({
 }));
 
 app.use('/hcgi/api', routes());
+
+app.get('/ads.txt', (req, res) => {
+	res.type('text/plain').send('google.com, pub-8267296728655232, DIRECT, f08c47fec0942fa0c');
+});
 
 app.get('/health', (req, res) => {
 	res.json({ status: 'ok' });

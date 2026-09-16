@@ -5,6 +5,7 @@ import EnrollmentForm from '@/components/EnrollmentForm';
 import { CheckCircle2, Award, Users, ShieldCheck, MessageCircle, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Navigate } from 'react-router-dom';
+import AdSenseAd from '@/components/AdSenseAd';
 
 const AmazonFBAWholesalePage = () => {
   const course = coursesData.find(c => c.slug === 'amazon-fba-wholesale');
@@ -77,7 +78,11 @@ const AmazonFBAWholesalePage = () => {
             </div>
           </section>
 
-          <div className="bg-blue-50 p-8 rounded-2xl border border-blue-100 mt-12">
+          <div className="my-6">
+            <AdSenseAd variant="card" format="auto" />
+          </div>
+
+          <div className="bg-blue-50 p-8 rounded-2xl border border-blue-100 mt-8">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">Have Questions? Let's Talk!</h3>
             <p className="text-slate-600 mb-6">Our experts are available to guide you through the enrollment process and answer any queries you might have.</p>
             <div className="flex flex-col sm:flex-row gap-4">

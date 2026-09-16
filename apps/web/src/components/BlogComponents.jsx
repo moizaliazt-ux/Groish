@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ChevronRight, CheckCircle2, MessageSquare, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AdSenseAd from '@/components/AdSenseAd';
 
 export const BlogCard = ({ post }) => (
   <Link to={`/blog/${post.slug}`} className="group bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg transition-all flex flex-col h-full">
@@ -53,6 +54,9 @@ export const BlogSidebar = () => (
         <li><Link to="/blog?category=Amazon PPC" className="hover:text-blue-600">Amazon PPC</Link></li>
         <li><Link to="/blog?category=E-Commerce" className="hover:text-blue-600">E-Commerce</Link></li>
       </ul>
+    </div>
+    <div className="rounded-xl overflow-hidden">
+      <AdSenseAd variant="sidebar" format="rectangle" />
     </div>
   </div>
 );

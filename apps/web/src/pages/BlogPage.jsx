@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Search } from 'lucide-react';
 import { blogPostsData } from '@/data/blogPostsData';
 import { BlogCard, BlogSidebar } from '@/components/BlogComponents';
+import AdSenseAd from '@/components/AdSenseAd';
 
 const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -71,8 +72,15 @@ const BlogPage = () => {
             </div>
             {filteredPosts.length > 0 ? (
               <div className="grid sm:grid-cols-2 gap-8">
-                {latestPosts.map(post => (
-                  <BlogCard key={post.slug} post={post} />
+                {latestPosts.map((post, idx) => (
+                  <React.Fragment key={post.slug}>
+                    <BlogCard post={post} />
+                    {idx === 1 && (
+                      <div className="sm:col-span-2 my-2">
+                        <AdSenseAd variant="card" format="auto" />
+                      </div>
+                    )}
+                  </React.Fragment>
                 ))}
               </div>
             ) : (

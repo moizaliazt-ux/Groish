@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { ChevronRight, Calendar, Clock, User } from 'lucide-react';
 import { blogPostsData } from '@/data/blogPostsData';
 import { BlogSidebar, BlogCTABanner, SocialShareButtons, BlogCard } from '@/components/BlogComponents';
+import AdSenseAd from '@/components/AdSenseAd';
 
 const BlogDetail = () => {
   const { slug } = useParams();
@@ -83,6 +84,10 @@ const BlogDetail = () => {
               className="blog-content prose prose-lg max-w-none text-slate-700 mb-12"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
+
+            <div className="my-8">
+              <AdSenseAd variant="card" format="auto" />
+            </div>
 
             <BlogCTABanner title="Ready to Scale Your Amazon Business?" subtitle="Join 500+ successful students from Pakistan today." />
 

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Clock3, Globe2, Mail, MapPin, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ContactForm from '@/components/ContactForm';
+import AdSenseAd from '@/components/AdSenseAd';
 import { siteUrl } from '@/data/servicePageConfig';
 
 const ContactPage = () => {
@@ -65,6 +66,12 @@ const ContactPage = () => {
           <ContactForm />
         </div>
       </section>
+
+      <div className="border-y border-slate-200 bg-slate-50 py-8">
+        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <AdSenseAd variant="banner" format="auto" />
+        </div>
+      </div>
 
       <section className="contact-lower-section"><div className="container relative mx-auto px-4 py-20 text-center sm:px-6 lg:px-8"><p className="contact-eyebrow">The next chapter starts with a useful question</p><h2 className="mx-auto mt-4 max-w-3xl text-4xl font-black tracking-[-0.05em] text-slate-950 sm:text-6xl">Ready to improve your operations?</h2><p className="mx-auto mt-5 max-w-2xl leading-8 text-slate-600">Explore our capabilities or start the conversation directly with the team.</p><Link to="/services" className="mt-8 inline-flex items-center rounded-full bg-cyan-300 px-7 py-4 text-sm font-bold text-slate-950 transition hover:-translate-y-1 hover:bg-cyan-200">Explore services <ArrowRight className="ml-2 h-4 w-4" /></Link></div></section>
     </>

@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Check, ChevronDown, CircleDot, Layers3, Sparkles, Target, Workflow } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AdSenseAd from '@/components/AdSenseAd';
 import { servicesData } from '@/data/servicesData';
 import { servicePageConfig, siteUrl } from '@/data/servicePageConfig';
 
@@ -170,6 +171,12 @@ const ServiceDetail = () => {
       </section>
 
       <section className="service-section bg-slate-50"><div className="container mx-auto grid gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8"><div><p className="service-eyebrow">05 / Where it creates value</p><h2 className="service-heading mt-4">Designed for teams with real operating pressure.</h2><div className="mt-8 grid gap-3 sm:grid-cols-2">{experience.industries.map((industry) => <div key={industry} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-800"><Check className="h-4 w-4 text-cyan-600" />{industry}</div>)}</div></div><div><p className="service-eyebrow">What success looks like</p><h2 className="service-heading mt-4">Outcomes you can evaluate without inflated promises.</h2><div className="mt-8 space-y-4">{baseService.outcomes.map((outcome) => <div key={outcome} className="flex gap-3 rounded-2xl bg-white p-5 shadow-sm"><Check className="mt-1 h-5 w-5 shrink-0 text-emerald-500" /><p className="leading-7 text-slate-700">{outcome}</p></div>)}</div></div></div></section>
+
+      <div className="border-y border-slate-200 bg-white py-8">
+        <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <AdSenseAd variant="banner" format="auto" />
+        </div>
+      </div>
 
       <section className="service-section bg-white">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8"><p className="service-eyebrow">06 / Frequently asked questions</p><h2 className="service-heading mt-4">Useful answers before the first workshop.</h2><div className="mt-12 space-y-3">{page.faqs.map((faq) => <details key={faq.question} className="group rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 font-bold text-slate-950"><span>{faq.question}</span><ChevronDown className="h-5 w-5 shrink-0 text-cyan-600 transition-transform group-open:rotate-180" /></summary><p className="pr-8 pt-4 leading-7 text-slate-600">{faq.answer}</p></details>)}</div></div>

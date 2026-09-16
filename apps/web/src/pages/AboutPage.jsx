@@ -7,6 +7,7 @@ import {
   Globe2, Layers3, LineChart, Network, Palette, Rocket, ShieldCheck, ShoppingBag,
   Sparkles, Target, TrendingUp, Workflow,
 } from 'lucide-react';
+import AdSenseAd from '@/components/AdSenseAd';
 const officeMeet = '/optimized-images/IMG_6236.webp';
 const officeTeam = '/optimized-images/IMG_6247.webp';
 const officeWorkspace = '/optimized-images/IMG_6258.webp';
@@ -225,6 +226,12 @@ const AboutPage = () => {
             </div>
           </div>
         </section>
+
+        <div className="border-y border-slate-200 bg-slate-50 py-8">
+          <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <AdSenseAd variant="banner" format="auto" />
+          </div>
+        </div>
 
         <section className="about-section about-approach bg-cyan-50/60">
           <div className="container mx-auto grid gap-14 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8">

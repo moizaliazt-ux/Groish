@@ -5,6 +5,7 @@ import { Briefcase, MapPin, Clock, ArrowRight, CheckCircle, Users } from 'lucide
 import { Button } from '@/components/ui/button';
 import { careersData } from '@/data/careersData';
 import JobApplicationModal from '@/components/JobApplicationModal';
+import AdSenseAd from '@/components/AdSenseAd';
 
 const CareersPage = () => {
   const [selectedJob, setSelectedJob] = useState(null);
@@ -91,6 +92,12 @@ const CareersPage = () => {
           </div>
         </div>
       </section>
+
+      <div className="border-b border-slate-200 bg-white py-8">
+        <div className="container mx-auto max-w-5xl px-4">
+          <AdSenseAd variant="banner" format="auto" />
+        </div>
+      </div>
 
       {/* Job Listings */}
       <section id="jobs-list" className="py-24 bg-slate-50 min-h-screen">

@@ -5,6 +5,7 @@ import HeroSlider from '@/components/HeroSlider';
 import WhatWeDo from '@/components/WhatWeDo';
 import GroishEcommerce from '@/components/GroishEcommerce';
 import EcosystemMarquee from '@/components/EcosystemMarquee';
+import AdSenseAd from '@/components/AdSenseAd';
 
 const InsideGroish = lazy(() => import('@/components/InsideGroish'));
 const GlobalPresence = lazy(() => import('@/components/GlobalPresence'));
@@ -243,6 +244,12 @@ const HomePage = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-100/50 py-8 border-y border-slate-200/60">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <AdSenseAd variant="banner" format="auto" />
         </div>
       </section>
 

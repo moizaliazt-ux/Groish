@@ -4,6 +4,7 @@ import { coursesData } from '@/data/coursesData';
 import EnrollmentForm from '@/components/EnrollmentForm';
 import { CheckCircle2, Award, Users, ShieldCheck } from 'lucide-react';
 import { Navigate } from 'react-router-dom';
+import AdSenseAd from '@/components/AdSenseAd';
 
 const ECommerceStartupPage = () => {
   const course = coursesData.find(c => c.slug === 'ecommerce-startup');
@@ -67,6 +68,10 @@ const ECommerceStartupPage = () => {
               ))}
             </div>
           </section>
+
+          <div className="my-6">
+            <AdSenseAd variant="card" format="auto" />
+          </div>
         </div>
 
         <div className="lg:col-span-1">

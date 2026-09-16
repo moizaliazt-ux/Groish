@@ -4,6 +4,7 @@ import { coursesData } from '@/data/coursesData';
 import EnrollmentForm from '@/components/EnrollmentForm';
 import { CheckCircle2, Award, Users, ShieldCheck } from 'lucide-react';
 import { Navigate } from 'react-router-dom';
+import AdSenseAd from '@/components/AdSenseAd';
 
 const AmazonPrivateLabelPage = () => {
   const course = coursesData.find(c => c.slug === 'amazon-private-label');
@@ -70,6 +71,10 @@ const AmazonPrivateLabelPage = () => {
               ))}
             </div>
           </section>
+
+          <div className="my-6">
+            <AdSenseAd variant="card" format="auto" />
+          </div>
         </div>
 
         <div className="lg:col-span-1">

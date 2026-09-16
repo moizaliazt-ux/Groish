@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, BadgeCheck, Building2, Code2, FileCheck2, HeartPulse, ReceiptText, ShieldCheck, Stethoscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import AdSenseAd from '@/components/AdSenseAd';
 
 const companies = [
   {
@@ -155,6 +156,12 @@ const ExploreOurCompaniesPage = () => (
           </div>
         </div>
       </motion.section>
+
+      <section className="bg-slate-50 py-8 border-b border-slate-200">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <AdSenseAd variant="banner" format="auto" />
+        </div>
+      </section>
 
       <motion.section id="companies" className="bg-white py-20 text-slate-950 sm:py-24" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.08 }} transition={revealTransition}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
