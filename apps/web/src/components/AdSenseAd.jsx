@@ -78,7 +78,7 @@ const AdSenseAd = ({
         }
       } catch (err) {
         // TagError or duplicate push protection
-        if (process.env.NODE_ENV === 'development') {
+        if (import.meta.env?.DEV) {
           console.debug('[AdSenseAd] Safe push notice:', err.message);
         }
         setAdStatus('error');

@@ -9,7 +9,7 @@
     "build": "cd apps/web && npx vite build",
     "start": "node server.js",
     "preview": "cd apps/web && npx vite preview --host :: --port 3000",
-    "lint": "eslint . --quiet"
+    "lint": "cd apps/web && eslint . --quiet"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.3.1",
