@@ -56,13 +56,24 @@ if (fs.existsSync(apiEntry)) {
 
       fs.readFile(filePath, (readErr, content) => {
         if (readErr) {
-          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.writeHead(404, { 'Content-Type': 'text/plain', 'X-Powered-By': 'Hostinger Horizons' });
           res.end('404 Not Found');
           return;
         }
+
+        let cacheControl = 'public, s-maxage=604800, max-age=0';
+        if (ext === '.html') {
+          cacheControl = 'no-cache, no-store, must-revalidate';
+        } else if (ext === '.js' || ext === '.css') {
+          cacheControl = 'public, max-age=31536000, immutable';
+        } else if (['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.ico'].includes(ext)) {
+          cacheControl = 'public, max-age=2592000';
+        }
+
         res.writeHead(200, {
           'Content-Type': contentType,
-          'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=31536000, immutable',
+          'X-Powered-By': 'Hostinger Horizons',
+          'Cache-Control': cacheControl,
         });
         res.end(content);
       });

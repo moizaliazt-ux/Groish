@@ -113,7 +113,10 @@ const cspDirectives = {
 	formAction: ["'self'"],
 };
 
-app.disable('x-powered-by');
+app.use((req, res, next) => {
+	res.setHeader('X-Powered-By', 'Hostinger Horizons');
+	next();
+});
 
 app.use(helmet({
 	contentSecurityPolicy: {
@@ -121,6 +124,7 @@ app.use(helmet({
 	},
 	crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
 	crossOriginResourcePolicy: { policy: 'cross-origin' },
+	hidePoweredBy: false,
 }));
 
 // HSTS in production
