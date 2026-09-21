@@ -7,10 +7,18 @@ const __dirname = path.dirname(__filename);
 
 // Attempt to load full API server if present
 const apiEntry = path.join(__dirname, 'apps/api/src/main.js');
+let apiLoaded = false;
 
 if (fs.existsSync(apiEntry)) {
-  await import('./apps/api/src/main.js');
-} else {
+  try {
+    await import('./apps/api/src/main.js');
+    apiLoaded = true;
+  } catch (err) {
+    console.error('⚠️ Failed to start API server, falling back to standalone static server:', err.message);
+  }
+}
+
+if (!apiLoaded) {
   // Standalone fallback static server using native http (zero external dependencies required)
   const http = await import('http');
   const PORT = process.env.PORT || 3000;
