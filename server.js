@@ -88,7 +88,7 @@ if (!apiLoaded) {
     });
   });
 
-  server.listen(PORT, () => {
+  server.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Groish Web Server running on port ${PORT}`);
   });
 }

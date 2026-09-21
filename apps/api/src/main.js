@@ -245,8 +245,8 @@ app.use((req, res) => {
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-	logger.info(`🚀 API Server running on http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+	logger.info(`🚀 API Server running on http://0.0.0.0:${port}`);
 	verifyMailer();
 });
 
