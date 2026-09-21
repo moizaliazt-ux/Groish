@@ -20,6 +20,8 @@ const possibleDistPaths = [
 	path.resolve(__dirname, '../../web/dist'),
 	path.resolve(process.cwd(), 'apps/web/dist'),
 	path.resolve(process.cwd(), 'dist'),
+	path.resolve(__dirname, '../dist'),
+	path.resolve(__dirname, '../../../dist'),
 ];
 const distPath = possibleDistPaths.find((p) => fs.existsSync(p)) || possibleDistPaths[0];
 
@@ -202,36 +204,38 @@ if (fs.existsSync(distPath)) {
 	});
 }
 
-// Dev proxy to Vite dev server on port 3000 if it's running
-app.use(async (req, res, next) => {
-	if (req.path.startsWith('/hcgi/api') || req.path.startsWith('/health')) {
-		return next();
-	}
-	try {
-		const targetUrl = `http://localhost:3000${req.originalUrl}`;
-		const controller = new AbortController();
-		const id = setTimeout(() => controller.abort(), 1000);
-		
-		const response = await fetch(targetUrl, {
-			method: req.method,
-			headers: req.headers,
-			signal: controller.signal,
-			duplex: req.body ? 'half' : undefined
-		});
-		clearTimeout(id);
-		
-		res.status(response.status);
-		response.headers.forEach((value, key) => {
-			if (key.toLowerCase() !== 'content-security-policy') {
-				res.setHeader(key, value);
-			}
-		});
-		const body = await response.arrayBuffer();
-		return res.send(Buffer.from(body));
-	} catch (e) {
-		next();
-	}
-});
+// Dev proxy to Vite dev server on port 3000 if it's running (dev only)
+if (process.env.NODE_ENV !== 'production') {
+	app.use(async (req, res, next) => {
+		if (req.path.startsWith('/hcgi/api') || req.path.startsWith('/health')) {
+			return next();
+		}
+		try {
+			const targetUrl = `http://localhost:3000${req.originalUrl}`;
+			const controller = new AbortController();
+			const id = setTimeout(() => controller.abort(), 1000);
+			
+			const response = await fetch(targetUrl, {
+				method: req.method,
+				headers: req.headers,
+				signal: controller.signal,
+				duplex: req.body ? 'half' : undefined
+			});
+			clearTimeout(id);
+			
+			res.status(response.status);
+			response.headers.forEach((value, key) => {
+				if (key.toLowerCase() !== 'content-security-policy') {
+					res.setHeader(key, value);
+				}
+			});
+			const body = await response.arrayBuffer();
+			return res.send(Buffer.from(body));
+		} catch {
+			next();
+		}
+	});
+}
 
 app.use(errorMiddleware);
 
