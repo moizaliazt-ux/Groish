@@ -291,6 +291,10 @@ logger.error = (msg, options) => {
 
 export default defineConfig({
 	server: {
+		watch: {
+			usePolling: true,
+			interval: 1000,
+		},
 		cors: { origin: AllowedEditorOrigins },
 		proxy: {
 			'/hcgi/api': 'http://127.0.0.1:3001',

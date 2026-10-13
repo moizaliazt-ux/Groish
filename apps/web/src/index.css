@@ -312,6 +312,8 @@
   .about-hero__image {
     inset: -8% 0 -4%;
     opacity: 0.62;
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   .about-hero__overlay {
@@ -333,6 +335,8 @@
     border-radius: 999px;
     pointer-events: none;
     filter: blur(12px);
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   .about-hero__orb--one {
@@ -385,6 +389,12 @@
 
   .about-section {
     padding: 7.5rem 0;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 650px;
+  }
+
+  .about-business-card {
+    contain: layout style;
   }
 
   .about-business-card__image img {
@@ -944,6 +954,17 @@
     max-width: 100%;
     overflow-x: clip;
     background: linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(239, 246, 255, 0.9));
+  }
+
+  /* Dark-themed pages: neutralize light shell background & decorative pseudo-elements */
+  .groish-page-shell.bg-slate-950 {
+    background: none;
+    background-color: rgb(2, 6, 23);
+  }
+
+  .groish-page-shell.bg-slate-950::before,
+  .groish-page-shell.bg-slate-950::after {
+    display: none;
   }
 
   .groish-ambient {

@@ -6,6 +6,8 @@ const quickLinks = [
   { label: 'Home', to: '/' },
   { label: 'About GROISH', to: '/about' },
   { label: 'Our Companies', to: '/companies#inside-groish' },
+  { label: 'Clients & Case Studies', to: '/clients' },
+  { label: 'KK Mart Launch', to: '/clients/kk-mart' },
   { label: 'Contact', to: '/contact' },
 ];
 
@@ -22,14 +24,13 @@ const Footer = () => (
       <div>
         <Link to="/" className="inline-flex items-center gap-3" aria-label="GROISH home">
           <img
-            src="https://horizons-cdn.hostinger.com/565f8ca5-c47b-4775-b115-631124afadc6/978ad0755ba7add5cdbf44416ad53af9.png"
+            src="/groish-logo-white.png"
             alt="GROISH"
-            width="120"
-            height="48"
+            width="132"
+            height="44"
             loading="lazy"
             decoding="async"
-            className="block h-10 w-auto max-w-[150px] object-contain brightness-0 invert"
-            onError={(event) => { event.currentTarget.style.display = 'none'; }}
+            className="block h-9 sm:h-10 w-auto object-contain"
           />
         </Link>
         <p className="mt-6 max-w-sm text-sm leading-7 text-slate-400">GROISH is the parent business group behind multiple specialized companies across technology, growth, healthcare, e-commerce, and education.</p>

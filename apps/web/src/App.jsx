@@ -23,6 +23,8 @@ const ServicesPage = lazy(() => import('@/pages/ServicesPage'));
 const ServiceDetail = lazy(() => import('@/pages/ServiceDetail'));
 const WhyChoosePage = lazy(() => import('@/pages/WhyChoosePage'));
 const CareersPage = lazy(() => import('@/pages/CareersPage'));
+const ClientsPage = lazy(() => import('@/pages/ClientsPage'));
+const KKMartCaseStudyPage = lazy(() => import('@/pages/KKMartCaseStudyPage'));
 
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -51,6 +53,8 @@ function AnimatedRoutes() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/companies" element={<CompaniesPage />} />
           <Route path="/explore-our-companies" element={<ExploreOurCompaniesPage />} />
+          <Route path="/clients" element={<ClientsPage />} />
+          <Route path="/clients/kk-mart" element={<KKMartCaseStudyPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />

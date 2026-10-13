@@ -8,6 +8,7 @@ import EcosystemMarquee from '@/components/EcosystemMarquee';
 import AdSenseAd from '@/components/AdSenseAd';
 
 const InsideGroish = lazy(() => import('@/components/InsideGroish'));
+const KKMartCaseStudy = lazy(() => import('@/components/KKMartCaseStudy'));
 const GlobalPresence = lazy(() => import('@/components/GlobalPresence'));
 const AboutGroish = lazy(() => import('@/components/AboutGroish'));
 const ContactForm = lazy(() => import('@/components/ContactForm'));
@@ -188,6 +189,10 @@ const HomePage = () => {
 
         <Suspense fallback={<div className="min-h-[350px]" />}>
           <InsideGroish />
+        </Suspense>
+
+        <Suspense fallback={<div className="min-h-[400px] bg-slate-950" />}>
+          <KKMartCaseStudy />
         </Suspense>
 
         <Suspense fallback={<div className="min-h-[250px]" />}>

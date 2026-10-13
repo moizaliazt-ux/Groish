@@ -1,16 +1,20 @@
 import React, { useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowRight, ArrowUpRight, BarChart3, Blocks, BrainCircuit, Building2, Check,
-  Globe2, Layers3, LineChart, Network, Palette, Rocket, ShieldCheck, ShoppingBag,
+  Globe2, Layers3, LineChart, Network, Rocket, ShieldCheck, ShoppingBag,
   Sparkles, Target, TrendingUp, Workflow,
 } from 'lucide-react';
 import AdSenseAd from '@/components/AdSenseAd';
+
 const officeMeet = '/optimized-images/IMG_6236.webp';
+const officeMeetMobile = '/optimized-images/IMG_6236-mobile.webp';
 const officeTeam = '/optimized-images/IMG_6247.webp';
+const officeTeamMobile = '/optimized-images/IMG_6247-mobile.webp';
 const officeWorkspace = '/optimized-images/IMG_6258.webp';
+const officeWorkspaceMobile = '/optimized-images/IMG_6258-mobile.webp';
 const officeInterior = '/optimized-images/IMG_6262.webp';
 
 const businesses = [
@@ -20,6 +24,9 @@ const businesses = [
     description: 'Digital, web, software, and technology solutions that help organizations build useful products and operate with more clarity.',
     capabilities: ['Web and software delivery', 'Product design and engineering', 'Technology operations'],
     image: officeWorkspace,
+    srcSet: `${officeWorkspaceMobile} 768w, ${officeWorkspace} 1200w`,
+    width: 1200,
+    height: 1600,
     alt: 'Modern GROISH workspace representing WebCore360 technology operations',
     icon: Network,
     href: '/services',
@@ -32,6 +39,9 @@ const businesses = [
     description: 'Healthcare revenue-cycle management, medical billing, and business support delivered through focused processes and operational discipline.',
     capabilities: ['Revenue-cycle operations', 'Medical billing support', 'Healthcare business services'],
     image: officeTeam,
+    srcSet: `${officeTeamMobile} 768w, ${officeTeam} 1200w`,
+    width: 1200,
+    height: 900,
     alt: 'GROISH team collaborating in an office representing TransMedEx operations',
     icon: ShieldCheck,
     href: 'https://transmedex.com',
@@ -44,6 +54,8 @@ const businesses = [
     description: 'E-commerce, marketplace operations, product management, and online business growth for brands building their next channel.',
     capabilities: ['Marketplace operations', 'Product and catalog management', 'Amazon education and growth'],
     image: officeInterior,
+    width: 1200,
+    height: 900,
     alt: 'GROISH office interior representing digital commerce and e-commerce operations',
     icon: ShoppingBag,
     href: '/courses/ecommerce-startup',
@@ -65,33 +77,37 @@ const flow = [
   { label: 'Clients & Markets', detail: 'Useful products, services, and growth', icon: Globe2 },
 ];
 
-const Reveal = ({ children, className = '', delay = 0 }) => (
-  <motion.div
-    className={className}
-    initial={{ opacity: 0, y: 22 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.18 }}
-    transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
-  >
-    {children}
-  </motion.div>
-);
+const organizationSchemaJson = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Corporation',
+  name: 'GROISH',
+  url: 'https://groish.com/about',
+  description: 'GROISH is a parent company building and managing specialized businesses across technology, business services, healthcare support, and e-commerce.',
+  email: 'info@groish.com',
+  brand: { '@type': 'Brand', name: 'GROISH' },
+  subOrganization: businesses.map((business) => ({ '@type': 'Organization', name: business.name })),
+});
+
+const Reveal = ({ children, className = '', delay = 0 }) => {
+  const reduceMotion = useReducedMotion();
+  return (
+    <motion.div
+      className={className}
+      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15, margin: '0px 0px -40px 0px' }}
+      transition={{ duration: 0.55, delay: reduceMotion ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const AboutPage = () => {
+  const reduceMotion = useReducedMotion();
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const heroImageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
-
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Corporation',
-    name: 'GROISH',
-    url: 'https://groish.com/about',
-    description: 'GROISH is a parent company building and managing specialized businesses across technology, business services, healthcare support, and e-commerce.',
-    email: 'info@groish.com',
-    brand: { '@type': 'Brand', name: 'GROISH' },
-    subOrganization: businesses.map((business) => ({ '@type': 'Organization', name: business.name })),
-  };
+  const heroImageY = useTransform(scrollYProgress, [0, 1], reduceMotion ? ['0%', '0%'] : ['0%', '16%']);
 
   return (
     <>
@@ -104,19 +120,25 @@ const AboutPage = () => {
         <meta property="og:url" content="https://groish.com/about" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
+        <script type="application/ld+json">{organizationSchemaJson}</script>
       </Helmet>
 
       <main className="about-page">
         <section ref={heroRef} className="about-hero relative isolate overflow-hidden bg-slate-950 text-white">
-          <motion.div className="about-hero__image absolute inset-0" style={{ y: heroImageY }}>
+          <motion.div 
+            className="about-hero__image absolute inset-0" 
+            style={{ y: heroImageY, willChange: reduceMotion ? 'auto' : 'transform' }}
+          >
             <img 
               src={officeMeet} 
+              srcSet={`${officeMeetMobile} 768w, ${officeMeet} 1200w`}
               alt="GROISH team workspace supporting a connected business ecosystem" 
               className="h-full w-full object-cover" 
               loading="eager" 
               fetchPriority="high" 
               decoding="async"
+              width={1200}
+              height={900}
               sizes="100vw"
             />
           </motion.div>
@@ -171,7 +193,10 @@ const AboutPage = () => {
                       <div className="about-business-card__image relative h-64 overflow-hidden">
                         <img 
                           src={business.image} 
+                          srcSet={business.srcSet}
                           alt={business.alt} 
+                          width={business.width || 1200}
+                          height={business.height || 900}
                           className="h-full w-full object-cover transition duration-700 group-hover:scale-105" 
                           loading="lazy" 
                           decoding="async" 
@@ -251,6 +276,8 @@ const AboutPage = () => {
                   className="h-[28rem] w-full object-cover" 
                   loading="lazy" 
                   decoding="async" 
+                  width={1200}
+                  height={900}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
